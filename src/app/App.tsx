@@ -7,6 +7,7 @@ import { Gallery } from './components/Gallery';
 import { Feedback } from './components/Feedback';
 import { Location } from './components/Location';
 import { Footer } from './components/Footer';
+import { BackToTop } from './components/BackToTop';
 import { useSection } from './context/SectionContext';
 
 function AppContent() {
@@ -27,10 +28,11 @@ function AppContent() {
         {activeSection === 'menu' && <Menu />}
         {activeSection === 'about' && <About />}
         {activeSection === 'gallery' && <Gallery />}
-        {activeSection === 'testimonials' && <Feedback />}
+        {activeSection === 'feedback' && <Feedback />}
         {activeSection === 'location' && <Location />}
       </main>
       {activeSection !== 'home' && <Footer />}
+      <BackToTop />
     </div>
   );
 }

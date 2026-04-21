@@ -247,6 +247,8 @@ class Media {
   createShader() {
     const texture = new Texture(this.gl, {
       generateMipmaps: true,
+      magFilter: this.gl.LINEAR,
+      minFilter: this.gl.LINEAR_MIPMAP_LINEAR,
     });
     this.program = new Program(this.gl, {
       depthTest: false,
@@ -402,8 +404,8 @@ class Media {
     this.scale = this.screen.height / 1500;
 
     const isMobile = this.screen.width < 768;
-    const heightMultiplier = isMobile ? 900 : 1000;
-    const widthMultiplier = isMobile ? 700 : 800;
+    const heightMultiplier = isMobile ? 800 : 1200;
+    const widthMultiplier = isMobile ? 700 : 1000;
 
     this.plane.scale.y =
       (this.viewport.height * (heightMultiplier * this.scale)) /
@@ -415,7 +417,7 @@ class Media {
       this.plane.scale.x,
       this.plane.scale.y,
     ];
-    this.padding = 2;
+    this.padding = isMobile ? 1.2 : 2;
     this.width = this.plane.scale.x + this.padding;
     this.widthTotal = this.width * this.length;
     this.x = this.width * this.index;
@@ -494,7 +496,7 @@ class App {
     this.renderer = new Renderer({
       alpha: true,
       antialias: true,
-      dpr: Math.min(window.devicePixelRatio || 1, 2),
+      dpr: window.devicePixelRatio || 1,
     });
     this.gl = this.renderer.gl;
     this.gl.clearColor(0, 0, 0, 0);

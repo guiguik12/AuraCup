@@ -7,7 +7,9 @@ export function Navbar() {
   const { t, lang, setLang } = useLanguage();
 
   const handleNavigation = (section: string) => {
-    setActiveSection(section as 'home' | 'menu' | 'about' | 'gallery' | 'feedback' | 'location');
+    setActiveSection(
+      section as 'home' | 'menu' | 'about' | 'gallery' | 'feedback' | 'location'
+    );
   };
 
   const navItems = [
@@ -16,7 +18,11 @@ export function Navbar() {
       bgColor: '#5B3130',
       textColor: '#E3E3E3',
       links: [
-        { label: t('nav.coffee'), onClick: () => handleNavigation('menu'), ariaLabel: t('nav.coffee') },
+        {
+          label: t('nav.coffee'),
+          onClick: () => handleNavigation('menu'),
+          ariaLabel: t('nav.coffee'),
+        },
       ],
     },
     {
@@ -29,8 +35,11 @@ export function Navbar() {
           onClick: () => handleNavigation('about'),
           ariaLabel: t('nav.history'),
         },
-        { label: t('nav.mission'), onClick: () => handleNavigation('about'), ariaLabel: t('nav.mission') },
-        { label: t('nav.gallery'), onClick: () => handleNavigation('gallery'), ariaLabel: t('nav.gallery') },
+        {
+          label: t('nav.gallery'),
+          onClick: () => handleNavigation('gallery'),
+          ariaLabel: t('nav.gallery'),
+        },
       ],
     },
     {
@@ -38,9 +47,16 @@ export function Navbar() {
       bgColor: '#5B3130',
       textColor: '#E3E3E3',
       links: [
-        { label: t('nav.gallery'), onClick: () => handleNavigation('gallery'), ariaLabel: t('nav.gallery') },
-        { label: t('nav.location'), onClick: () => handleNavigation('location'), ariaLabel: t('nav.location') },
-        { label: t('nav.feedback'), onClick: () => handleNavigation('testimonials'), ariaLabel: t('nav.feedback') },
+        {
+          label: t('nav.location'),
+          onClick: () => handleNavigation('location'),
+          ariaLabel: t('nav.location'),
+        },
+        {
+          label: t('nav.feedback'),
+          onClick: () => handleNavigation('feedback'),
+          ariaLabel: t('nav.feedback'),
+        },
       ],
     },
   ];

@@ -1,5 +1,5 @@
 import { motion, useInView } from 'motion/react';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import auracupHand from '@/assets/auracup_hand.gif';
 import auracupCups from '@/assets/auracup_cups.png';
@@ -50,6 +50,16 @@ export function Gallery() {
   const heroRef = useRef(null);
   const heroIsInView = useInView(heroRef, { once: true, amount: 0.3 });
   const { t } = useLanguage();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section id="gallery" className="bg-[#E3E3E3]">
@@ -106,8 +116,8 @@ export function Gallery() {
             bend={0}
             textColor="#141517"
             borderRadius={0.05}
-            scrollSpeed={2}
-            scrollEase={0.05}
+            scrollSpeed={isMobile ? 1.5 : 2}
+            scrollEase={isMobile ? 0.08 : 0.05}
           />
         </motion.div>
         <div className="flex items-center justify-center gap-5 py-8">
