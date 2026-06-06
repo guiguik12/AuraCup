@@ -26,7 +26,7 @@ const translations: Record<Lang, Record<string, string>> = {
     'hero.brandIdentity': 'Brand Identity by Богдана Собко',
 
     // About
-    'about.title': 'Our Story',
+    'about.title': 'OUR STORY',
     'about.p1':
       "AuraCup's mission has always been to offer more than just great flavors. We wanted to build an experience — an environment where the aroma of fresh coffee, warm service, and a tranquil atmosphere make every customer feel at home.",
     'about.p2':
@@ -142,7 +142,7 @@ const translations: Record<Lang, Record<string, string>> = {
     'hero.brandIdentity': 'Identidade Visual por Богдана Собко',
 
     // About
-    'about.title': 'Nossa Hist\u00f3ria',
+    'about.title': 'NOSSA HISTÓRIA',
     'about.p1':
       'A proposta da AuraCup sempre foi oferecer mais do que sabores marcantes. Quer\u00edamos construir uma experi\u00eancia — um ambiente em que o aroma do caf\u00e9 fresco, o atendimento pr\u00f3ximo e a atmosfera tranquila fizessem cada cliente se sentir em casa.',
     'about.p2':
