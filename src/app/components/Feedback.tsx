@@ -3,6 +3,10 @@ import { useRef } from 'react';
 import Slider from 'react-slick';
 import { Star, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../../i18n/LanguageContext';
+import ShinyText from './ShinyText';
+
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 function CustomArrow({
   direction,
@@ -16,9 +20,9 @@ function CustomArrow({
       onClick={onClick}
       className={`absolute top-1/2 -translate-y-1/2 ${
         direction === 'prev'
-          ? 'left-0 -translate-x-12'
-          : 'right-0 translate-x-12'
-      } z-10 bg-[#C9A84C] hover:bg-[#d4b55c] text-[#2C1A0E] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hidden lg:block`}
+          ? 'left-0 -translate-x-20 lg:-translate-x-24'
+          : 'right-0 translate-x-20 lg:translate-x-24'
+      } z-10 bg-[#5B3130] hover:bg-[rgb(61, 41, 24)] text-[#E3E3E3] rounded-full p-3 shadow-lg transition-all duration-300 hover:scale-110 hidden lg:block`}
     >
       {direction === 'prev' ? (
         <ChevronLeft className="w-6 h-6" />
@@ -101,19 +105,29 @@ export function Feedback() {
     <section
       id="feedback"
       ref={ref}
-      className="py-20 md:py-32 bg-white overflow-hidden"
+      className="py-20 md:py-32 bg-[#E3E3E3] overflow-hidden"
     >
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-24">
+      <div className="max-w-[1440px] mx-auto px-4 md:px-12 lg:px-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16 mt-8 md:mt-0"
         >
-          <h2 className="font-['Inter'] text-[#2C1A0E] text-4xl md:text-5xl lg:text-6xl mb-4">
-            {t('feedback.title')}
-          </h2>
-          <p className="font-['Inter'] text-[#2C1A0E]/70 text-lg max-w-2xl mx-auto">
+          <ShinyText
+            text={t('feedback.title')}
+            speed={3}
+            delay={0}
+            color="#2C1A0E"
+            shineColor="#E2DADD"
+            spread={150}
+            direction="left"
+            yoyo
+            pauseOnHover
+            disabled={false}
+            className="font-['Inter'] text-2xl md:text-4xl lg:text-5xl mb-4 font-bold"
+          />
+          <p className="font-['Inter'] text-[#141517]/70 text-sm md:text-lg max-w-2xl mx-auto px-4">
             {t('feedback.subtitle')}
           </p>
         </motion.div>
@@ -122,36 +136,36 @@ export function Feedback() {
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative px-4 lg:px-16"
+          className="relative px-0 lg:px-16"
         >
           <Slider {...settings}>
             {feedbacks.map(fb => (
-              <div key={fb.id} className="px-4">
-                <div className="bg-[#F5ECD7] rounded-2xl p-8 shadow-lg h-full">
-                  <div className="flex gap-1 mb-4">
+              <div key={fb.id} className="px-1 md:px-3">
+                <div className="bg-[#5B3130] rounded-2xl p-6 md:p-8 shadow-lg h-full text-center">
+                  <div className="flex gap-1 mb-4 justify-center">
                     {Array.from({ length: fb.rating }, (_, i) => (
                       <Star
                         key={i}
-                        className="w-5 h-5 fill-[#C9A84C] text-[#C9A84C]"
+                        className="w-5 h-5 md:w-5 md:h-5 fill-[#fbe188] text-[#ecc725]"
                       />
                     ))}
                   </div>
 
-                  <p className="font-['Inter'] text-[#2C1A0E]/80 text-base leading-relaxed mb-6">
+                  <p className="font-['Inter'] text-[#E3E3E3] text-sm md:text-md leading-relaxed mb-6">
                     "{t(fb.textKey)}"
                   </p>
 
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-full bg-[#8A9E7B] flex items-center justify-center">
-                      <span className="font-['Inter'] text-white text-lg">
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="w-10 h-10 rounded-full bg-[#6a6a6a] flex items-center justify-center flex-shrink-0">
+                      <span className="font-['Inter'] text-white text-sm md:text-md font-medium">
                         {fb.avatar}
                       </span>
                     </div>
-                    <div>
-                      <div className="font-['Inter'] text-[#2C1A0E] text-lg">
+                    <div className="text-center">
+                      <div className="font-['Inter'] text-[#E3E3E3] font-semibold text-sm md:text-md">
                         {t(fb.nameKey)}
                       </div>
-                      <div className="font-['Inter'] text-[#2C1A0E]/60 text-sm">
+                      <div className="font-['Inter'] text-[#E3E3E3]/60 text-sm md:text-md">
                         {t(fb.roleKey)}
                       </div>
                     </div>
@@ -165,7 +179,6 @@ export function Feedback() {
 
       <style>{`
         .slick-slider {
-          position: relative;
           display: block;
           box-sizing: border-box;
           user-select: none;
@@ -237,6 +250,32 @@ export function Feedback() {
           display: none;
         }
 
+<<<<<<< HEAD
+=======
+        .slick-slide {
+          height: auto !important;
+        }
+
+        .slick-track {
+          display: flex !important;
+          align-items: stretch !important;
+        }
+
+        .slick-slide > div {
+          height: 100%;
+        }
+
+        .slick-list {
+          margin: 0 -4px;
+        }
+
+        @media (min-width: 768px) {
+          .slick-list {
+            margin: 0 -12px;
+          }
+        }
+
+>>>>>>> a75f87c (feat: página de feedback com visual feito.)
         .slick-dots {
           position: relative;
           bottom: -50px;
@@ -247,6 +286,7 @@ export function Feedback() {
           list-style: none;
           text-align: center;
         }
+
         .slick-dots li {
           position: relative;
           display: inline-block;
@@ -256,6 +296,7 @@ export function Feedback() {
           padding: 0;
           cursor: pointer;
         }
+
         .slick-dots li button {
           font-size: 0;
           line-height: 0;
@@ -269,8 +310,9 @@ export function Feedback() {
           outline: none;
           background: transparent;
         }
+
         .slick-dots li button:before {
-          font-size: 10px;
+          font-size: 12px;
           line-height: 20px;
           position: absolute;
           top: 0;
@@ -280,11 +322,18 @@ export function Feedback() {
           content: '\u2022';
           text-align: center;
           opacity: 0.4;
-          color: #C9A84C;
+          color: #5B3130;
         }
+
         .slick-dots li.slick-active button:before {
           opacity: 1;
-          color: #C9A84C;
+          color: #5B3130;
+        }
+
+        @media (max-width: 767px) {
+          .slick-dots li button:before {
+            font-size: 10px;
+          }
         }
       `}</style>
     </section>
