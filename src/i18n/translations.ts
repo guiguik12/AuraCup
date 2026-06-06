@@ -58,9 +58,8 @@ const translations: Record<Lang, Record<string, string>> = {
     'gallery.slideText': 'Slide to explore',
 
     // Feedback / Testimonials
-    'feedback.title': 'What Our Customers Say',
-    'feedback.subtitle':
-      "Don't just take our word for it — read what some of our loyal customers have said:",
+    'feedback.title': 'WHAT OUR CLIENTS SAY',
+    'feedback.subtitle': 'Read what some of our loyal customers have said:',
     'feedback.person1': 'Ana Silva',
     'feedback.role1': 'Coffee Lover',
     'feedback.text1':
@@ -174,9 +173,9 @@ const translations: Record<Lang, Record<string, string>> = {
     'gallery.scrollText': 'Role para ver imagens',
     'gallery.slideText': 'Deslize para explorar',
     // Feedback / Testimonials
-    'feedback.title': 'O que nossos clientes dizem?',
+    'feedback.title': 'O QUE OS CLIENTES DIZEM?',
     'feedback.subtitle':
-      'N\u00e3o leve em conta apenas o que falamos, leia o que alguns de nossos maiores clientes j\u00e1 falaram:',
+      'Leia o que alguns de nossos maiores clientes j\u00e1 falaram:',
     'feedback.person1': 'Ana Silva',
     'feedback.role1': 'Apaixonada por Caf\u00e9',
     'feedback.text1':
