@@ -23,7 +23,23 @@ php artisan key:generate
 
 ### 3. Rodar Migrations do banco
 ```
-php artisan migrate
+php artisan migrate:fresh --seed
+```
+
+Com esse comando:
+
+- O Laravel apaga todas as tabelas do SQLite.
+
+- Cria todas as tabelas limpas novamente.
+
+- Executa o DatabaseSeeder, semeando o DB, inserindo os valores Default/Hardcoded.
+
+### Opcional:
+
+Se quiser ver as colunas de alguma tabela, pode rodar
+
+```
+php artisan model:show nomeDaTabela
 ```
 
 ### 4. Rodar servidor Back End

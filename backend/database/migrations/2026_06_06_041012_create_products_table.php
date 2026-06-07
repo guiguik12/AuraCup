@@ -16,8 +16,10 @@ return new class extends Migration
 
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
     
-            $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('name_en');
+            $table->string('name_pt');
+            $table->text('description_en')->nullable();
+            $table->text('description_pt')->nullable();
             $table->integer('price'); // Salva em centavos para evitar erros de arredondamento
             $table->string('image_url');
             $table->boolean('is_available');
