@@ -72,7 +72,7 @@ export function Menu() {
             disabled={false}
             className="font-['Inter'] text-3xl md:text-4xl lg:text-5xl font-bold"
           />
-          <div className="flex justify-center gap-4 mt-6">
+          <div className="flex justify-center gap-3 mt-6">
             {[
               { key: null, label: t('menu.filter.all') },
               { key: 'Cafés Especiais', label: t('menu.filter.drinks') },
@@ -85,7 +85,7 @@ export function Menu() {
                   setActiveCategory(key);
                   setVisibleCount(6);
                 }}
-                className={`px-5 py-2 rounded-full font-['Inter'] text-sm font-bold transition-all duration-300 ${
+                className={`min-w-[120px] px-5 py-2 rounded-full font-['Inter'] text-sm font-bold transition-all duration-300 ${
                   activeCategory === key
                     ? 'bg-[#5B3130] text-[#E3E3E3] shadow-lg'
                     : 'bg-[#E3E3E3] text-[#5B3130] hover:bg-[#C9A84C] hover:text-[#E3E3E3]'
