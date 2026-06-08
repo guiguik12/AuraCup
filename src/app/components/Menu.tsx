@@ -21,6 +21,7 @@ export function Menu() {
   const [products, setProducts] = useState<MenuItem[]>(fallbackMenuItems);
   const [visibleCount, setVisibleCount] = useState(6);
   const [isLoading, setIsLoading] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -43,8 +44,11 @@ export function Menu() {
     }, 200);
   };
 
-  const visibleProducts = products.slice(0, visibleCount);
-  const hasMore = visibleCount < products.length;
+  const filteredProducts = activeCategory
+    ? products.filter(p => p.category === activeCategory)
+    : products;
+  const visibleProducts = filteredProducts.slice(0, visibleCount);
+  const hasMore = visibleCount < filteredProducts.length;
 
   return (
     <section id="menu" ref={ref} className="py-20 md:py-32 bg-[#E3E3E3]">
@@ -68,6 +72,29 @@ export function Menu() {
             disabled={false}
             className="font-['Inter'] text-3xl md:text-4xl lg:text-5xl font-bold"
           />
+          <div className="flex justify-center gap-4 mt-6">
+            {[
+              { key: null, label: t('menu.filter.all') },
+              { key: 'Cafés Especiais', label: t('menu.filter.drinks') },
+              { key: 'Para Acompanhar', label: t('menu.filter.snacks') },
+            ].map(({ key, label }) => (
+              <button
+                key={label}
+                type="button"
+                onClick={() => {
+                  setActiveCategory(key);
+                  setVisibleCount(6);
+                }}
+                className={`px-5 py-2 rounded-full font-['Inter'] text-sm font-bold transition-all duration-300 ${
+                  activeCategory === key
+                    ? 'bg-[#5B3130] text-[#E3E3E3] shadow-lg'
+                    : 'bg-[#E3E3E3] text-[#5B3130] hover:bg-[#C9A84C] hover:text-[#E3E3E3]'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -75,13 +75,15 @@ const translations: Record<Lang, Record<string, string>> = {
     'menu.desc14': 'Hot espresso poured over a scoop of vanilla ice cream.',
     'menu.item15': 'Special Macchiato',
     'menu.desc15': 'Espresso stained with a touch of frothed milk.',
-    'menu.item16': 'Cheese Pastel',
     'menu.desc16': 'Crispy fried pastry filled with melted cheese.',
     'menu.item17': 'Chicken Croquette',
     'menu.desc17': 'Golden teardrop-shaped croquette filled with shredded chicken.',
     'menu.item18': 'Grilled Ham & Cheese',
     'menu.desc18': 'Toasted bread with ham and melted cheese.',
     'menu.addToCart': 'Add to Cart',
+    'menu.filter.all': 'All',
+    'menu.filter.drinks': 'Drinks',
+    'menu.filter.snacks': 'Snacks',
 
     // Cart / Orders
     'cart.title': 'Your order',
@@ -290,6 +292,9 @@ const translations: Record<Lang, Record<string, string>> = {
     'menu.item18': 'Tosta Mista',
     'menu.desc18': 'Pão torrado com presunto e queijo derretido.',
     'menu.addToCart': 'Adicionar ao Carrinho',
+    'menu.filter.all': 'Todos',
+    'menu.filter.drinks': 'Bebidas',
+    'menu.filter.snacks': 'Salgados',
 
     // Cart / Orders
     'cart.title': 'Seu pedido',
