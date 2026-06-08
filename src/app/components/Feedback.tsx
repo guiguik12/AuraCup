@@ -250,8 +250,6 @@ export function Feedback() {
           display: none;
         }
 
-<<<<<<< HEAD
-=======
         .slick-slide {
           height: auto !important;
         }
