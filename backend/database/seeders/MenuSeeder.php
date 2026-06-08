@@ -125,17 +125,6 @@ class MenuSeeder extends Seeder
         // 4. Novos salgados
         Product::create([
             'category_id' => $comidas->id,
-            'name_en' => 'Cheese Pastel',
-            'name_pt' => 'Pastel Queijo Mineiro',
-            'description_en' => 'Crispy fried pastry filled with melted cheese.',
-            'description_pt' => 'Pastel crocante recheado com queijo derretido.',
-            'price' => 800, // R$ 8,00
-            'is_available' => true,
-            'image_url' => 'https://images.unsplash.com/photo-1585478259715-876acc5be8fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXN0ZWwlMjBkZSUyMHF1ZWlqb3xlbnwxfHx8fDE3NTkxOTk5NDh8MA&ixlib=rb-4.1.0&q=80&w=1080'
-        ]);
-
-        Product::create([
-            'category_id' => $comidas->id,
             'name_en' => 'Chicken Croquette',
             'name_pt' => 'Coxinha de Frango',
             'description_en' => 'Golden teardrop-shaped croquette filled with shredded chicken.',

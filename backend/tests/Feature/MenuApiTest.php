@@ -31,7 +31,7 @@ class MenuApiTest extends TestCase
     {
         $this->getJson('/api/products')
             ->assertOk()
-            ->assertJsonCount(12)
+            ->assertJsonCount(11)
             ->assertJsonPath('0.name_pt', 'Expresso Artesanal')
             ->assertJsonPath('0.price', 600);
     }

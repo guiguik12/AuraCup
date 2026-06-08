@@ -122,18 +122,6 @@ export const fallbackMenuItems: MenuItem[] = [
       'https://images.unsplash.com/photo-1485808191679-5f86510681a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWNoaWF0b3xlbnwxfHx8fDE3NTkwMzE0NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080',
   },
   {
-    id: 10,
-    nameEn: 'Cheese Pastel',
-    namePt: 'Pastel Queijo Mineiro',
-    descriptionEn: 'Crispy fried pastry filled with melted cheese.',
-    descriptionPt: 'Pastel crocante recheado com queijo derretido.',
-    price: 800,
-    category: 'Para Acompanhar',
-    available: true,
-    image:
-      'https://images.unsplash.com/photo-1585478259715-876acc5be8fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXN0ZWwlMjBkZSUyMHF1ZWlqb3xlbnwxfHx8fDE3NTkxOTk5NDh8MA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
     id: 11,
     nameEn: 'Chicken Croquette',
     namePt: 'Coxinha de Frango',
