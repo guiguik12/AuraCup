@@ -47,7 +47,7 @@ export const fallbackMenuItems: MenuItem[] = [
     category: 'Cafés Especiais',
     available: true,
     image:
-      'https://images.unsplash.com/photo-1667388363683-a07bbf0c84b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxjYXBwdWNjaW5vJTIwbGF0dGUlMjBhcnR8ZW58MXx8fHwxNzc0MjI5OTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxsYXR0ZSUyMG1hY2NoaWF0b3xlbnwxfHx8fHwxNzYxMTMzODU1fDA&ixlib=rb-4.1.0&q=80&w=1080',
   },
   {
     id: 4,
@@ -71,7 +71,7 @@ export const fallbackMenuItems: MenuItem[] = [
     category: 'Para Acompanhar',
     available: true,
     image:
-      'https://images.unsplash.com/photo-1675125530909-15213f01a9e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxwYXN0cnklMjBjcm9pc3NhbnQlMjBjb2ZmZWV8ZW58MXx8fHwxNzc0MjczMTA2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      'https://images.unsplash.com/photo-1608198093002-ad4e00557187?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYW8lMjBkZSUyMHF1ZWlqb3xlbnwxfHx8fHwxNzYxMTMzODU1fDA&ixlib=rb-4.1.0&q=80&w=1080',
   },
   {
     id: 6,
