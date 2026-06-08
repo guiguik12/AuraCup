@@ -79,13 +79,81 @@ class MenuSeeder extends Seeder
 
         Product::create([
             'category_id' => $comidas->id,
-            'name_en' => 'Butter Croisant',
-            'name_pt' => 'Croisant Amanteigado',
-            'description_en' => 'Quasou',
-            'description_pt' => 'Quasou',
-            'price' => 3500, // R$ 14,00
+            'name_en' => 'Butter Croissant',
+            'name_pt' => 'Croissant Amanteigado',
+            'description_en' => 'Golden pastry with a buttery center.',
+            'description_pt' => 'Massa dourada com centro amanteigado.',
+            'price' => 3500, // R$ 35,00
             'is_available' => true,
             'image_url' => 'https://images.unsplash.com/photo-1675125530909-15213f01a9e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXN0cnklMjBjcm9pc3NhbnQlMjBjb2ZmZWV8ZW58MXx8fHwxNzc0MjczMTA2fDA&ixlib=rb-4.1.0&q=80&w=1080'
+        ]);
+
+        // 3. Novos cafés especiais
+        Product::create([
+            'category_id' => $cafes->id,
+            'name_en' => 'Mocha',
+            'name_pt' => 'Mocha',
+            'description_en' => 'Espresso blended with rich chocolate and steamed milk.',
+            'description_pt' => 'Espresso combinado com chocolate rico e leite vaporizado.',
+            'price' => 1400, // R$ 14,00
+            'is_available' => true,
+            'image_url' => 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2NoYSUyMGNvZmZlZXxlbnwxfHx8fDE3NjExMzM4NTV8MA&ixlib=rb-4.1.0&q=80&w=1080'
+        ]);
+
+        Product::create([
+            'category_id' => $cafes->id,
+            'name_en' => 'Affogato',
+            'name_pt' => 'Affogato',
+            'description_en' => 'Hot espresso poured over a scoop of vanilla ice cream.',
+            'description_pt' => 'Espresso quente despejado sobre uma bola de sorvete de baunilha.',
+            'price' => 1500, // R$ 15,00
+            'is_available' => true,
+            'image_url' => 'https://images.unsplash.com/photo-1579954115545-a95591f28bfc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhZmZvZ2F0b3xlbnwxfHx8fDE3NTkxOTk5Mzh8MA&ixlib=rb-4.1.0&q=80&w=1080'
+        ]);
+
+        Product::create([
+            'category_id' => $cafes->id,
+            'name_en' => 'Special Macchiato',
+            'name_pt' => 'Macchiato Especial',
+            'description_en' => 'Espresso stained with a touch of frothed milk.',
+            'description_pt' => 'Espresso com uma pincelada de leite espumado.',
+            'price' => 1100, // R$ 11,00
+            'is_available' => true,
+            'image_url' => 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtYWNoaWF0b3xlbnwxfHx8fDE3NTkwMzE0NTZ8MA&ixlib=rb-4.1.0&q=80&w=1080'
+        ]);
+
+        // 4. Novos salgados
+        Product::create([
+            'category_id' => $comidas->id,
+            'name_en' => 'Cheese Pastel',
+            'name_pt' => 'Pastel Queijo Mineiro',
+            'description_en' => 'Crispy fried pastry filled with melted cheese.',
+            'description_pt' => 'Pastel crocante recheado com queijo derretido.',
+            'price' => 800, // R$ 8,00
+            'is_available' => true,
+            'image_url' => 'https://images.unsplash.com/photo-1585478259715-876acc5be8fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXN0ZWwlMjBkZSUyMHF1ZWlqb3xlbnwxfHx8fDE3NTkxOTk5NDh8MA&ixlib=rb-4.1.0&q=80&w=1080'
+        ]);
+
+        Product::create([
+            'category_id' => $comidas->id,
+            'name_en' => 'Chicken Croquette',
+            'name_pt' => 'Coxinha de Frango',
+            'description_en' => 'Golden teardrop-shaped croquette filled with shredded chicken.',
+            'description_pt' => 'Coxinha dourada em forma de gota recheada com frango desfiado.',
+            'price' => 900, // R$ 9,00
+            'is_available' => true,
+            'image_url' => 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb3hpbmhhfGVufDF8fHx8MTc1OTE5OTk1NXww&ixlib=rb-4.1.0&q=80&w=1080'
+        ]);
+
+        Product::create([
+            'category_id' => $comidas->id,
+            'name_en' => 'Grilled Ham & Cheese',
+            'name_pt' => 'Tosta Mista',
+            'description_en' => 'Toasted bread with ham and melted cheese.',
+            'description_pt' => 'Pão torrado com presunto e queijo derretido.',
+            'price' => 1000, // R$ 10,00
+            'is_available' => true,
+            'image_url' => 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxncmlsbGVkJTIwc2FuZHdpY2h8ZW58MXx8fHwxNzU5MTk5OTYyfDA&ixlib=rb-4.1.0&q=80&w=1080'
         ]);
     }
 }
