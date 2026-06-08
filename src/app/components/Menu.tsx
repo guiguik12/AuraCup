@@ -75,7 +75,7 @@ export function Menu() {
           <div className="flex justify-center gap-3 mt-6">
             {[
               { key: null, label: t('menu.filter.all') },
-              { key: 'Cafés Especiais', label: t('menu.filter.drinks') },
+              { key: 'Especial', label: t('menu.filter.drinks') },
               { key: 'Para Acompanhar', label: t('menu.filter.snacks') },
             ].map(({ key, label }) => (
               <button

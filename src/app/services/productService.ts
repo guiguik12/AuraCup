@@ -71,5 +71,5 @@ function mapApiProductToMenuItem(product: ApiProduct): MenuItem | null {
 }
 
 function getCategoryLabel(categoryId?: number | string) {
-  return Number(categoryId) === 2 ? 'Para Acompanhar' : 'Cafés Especiais';
+  return Number(categoryId) === 2 ? 'Para Acompanhar' : 'Especial';
 }
