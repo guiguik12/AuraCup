@@ -273,10 +273,8 @@ export function Feedback() {
           }
         }
 
->>>>>>> a75f87c (feat: página de feedback com visual feito.)
         .slick-dots {
           position: relative;
-          bottom: -50px;
           display: block;
           width: 100%;
           padding: 0;
