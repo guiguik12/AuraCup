@@ -27,7 +27,7 @@ const translations: Record<Lang, Record<string, string>> = {
     'hero.brandIdentity': 'Brand Identity by Богдана Собко',
 
     // About
-    'about.title': 'OUR STORY',
+    'about.title': 'Our Story',
     'about.p1':
       "AuraCup's mission has always been to offer more than just great flavors. We wanted to build an experience — an environment where the aroma of fresh coffee, warm service, and a tranquil atmosphere make every customer feel at home.",
     'about.p2':
@@ -42,14 +42,34 @@ const translations: Record<Lang, Record<string, string>> = {
     // Menu
     'menu.title': 'MENU',
     'menu.viewMore': 'View More',
+    'menu.loading': 'Loading...',
+    'menu.category.coffee': 'Coffee',
+    'menu.category.bakery': 'Bakery',
     'menu.item1': 'Artisan Espresso',
     'menu.item2': 'Classic Cappuccino',
     'menu.item3': 'Butter Croissant',
     'menu.item4': 'Latte Macchiato',
     'menu.item5': 'Special Cold Brew',
     'menu.item6': 'Cheese Bread',
-    'menu.description': 'yadayadayada',
-    'menu.addToCart': 'Add to cart',
+    'menu.desc1': 'Single-origin espresso with notes of chocolate and caramel.',
+    'menu.desc2': 'Perfect balance of espresso, steamed milk, and foam.',
+    'menu.desc3': 'Flaky, buttery croissant baked fresh daily.',
+    'menu.desc4': 'Rich espresso with creamy steamed milk.',
+    'menu.desc5': 'Smooth cold brew coffee steeped for 24 hours.',
+    'menu.desc6': 'Warm cheese bread, crispy on the outside and soft inside.',
+    'menu.item7': 'Caramel Frappuccino',
+    'menu.desc7': 'Blended caramel coffee drink topped with whipped cream.',
+    'menu.item8': 'Chocolate Muffin',
+    'menu.desc8': 'Rich chocolate muffin with a moist, tender crumb.',
+    'menu.item9': 'Vanilla Latte',
+    'menu.desc9': 'Smooth espresso with vanilla syrup and steamed milk.',
+    'menu.item10': 'Cinnamon Roll',
+    'menu.desc10': 'Soft cinnamon roll topped with cream cheese icing.',
+    'menu.item11': 'Mocha',
+    'menu.desc11': 'Espresso with chocolate syrup and steamed milk.',
+    'menu.item12': 'Apple Pie',
+    'menu.desc12': 'Homemade apple pie with a flaky crust.',
+    'menu.addToCart': 'Add to Cart',
 
     // Cart / Orders
     'cart.title': 'Your order',
@@ -116,8 +136,9 @@ const translations: Record<Lang, Record<string, string>> = {
     'gallery.slideText': 'Slide to explore',
 
     // Feedback / Testimonials
-    'feedback.title': 'WHAT OUR CLIENTS SAY',
-    'feedback.subtitle': 'Read what some of our loyal customers have said:',
+    'feedback.title': 'What Our Customers Say',
+    'feedback.subtitle':
+      "Don't just take our word for it — read what some of our loyal customers have said:",
     'feedback.person1': 'Ana Silva',
     'feedback.role1': 'Coffee Lover',
     'feedback.text1':
@@ -181,7 +202,7 @@ const translations: Record<Lang, Record<string, string>> = {
   'pt-br': {
     // Navbar
     'nav.logo': 'aura cup',
-    'nav.menu': 'Menu',
+    'nav.menu': 'Card\u00e1pio',
     'nav.coffee': 'Caf\u00e9',
     'nav.about': 'Sobre',
     'nav.history': 'Hist\u00f3ria',
@@ -198,11 +219,11 @@ const translations: Record<Lang, Record<string, string>> = {
     // Hero / Home
     'hero.brand': 'AURA CUP',
     'hero.subtitle': 'Cafeteria',
-    'hero.viewMenu': 'Ver Menu',
+    'hero.viewMenu': 'Ver Card\u00e1pio',
     'hero.brandIdentity': 'Identidade Visual por Богдана Собко',
 
     // About
-    'about.title': 'NOSSA HISTÓRIA',
+    'about.title': 'Nossa Hist\u00f3ria',
     'about.p1':
       'A proposta da AuraCup sempre foi oferecer mais do que sabores marcantes. Quer\u00edamos construir uma experi\u00eancia — um ambiente em que o aroma do caf\u00e9 fresco, o atendimento pr\u00f3ximo e a atmosfera tranquila fizessem cada cliente se sentir em casa.',
     'about.p2':
@@ -217,14 +238,34 @@ const translations: Record<Lang, Record<string, string>> = {
     // Menu
     'menu.title': 'MENU',
     'menu.viewMore': 'Ver mais',
+    'menu.loading': 'Carregando...',
+    'menu.category.coffee': 'Caf\u00e9',
+    'menu.category.bakery': 'Padaria',
     'menu.item1': 'Espresso Artesanal',
     'menu.item2': 'Cappuccino Cl\u00e1ssico',
     'menu.item3': 'Croissant Amanteigado',
     'menu.item4': 'Latte Macchiato',
     'menu.item5': 'Cold Brew Especial',
     'menu.item6': 'P\u00e3o de Queijo',
-    'menu.description': 'yadayadayada',
-    'menu.addToCart': 'Adicionar ao carrinho',
+    'menu.desc1': 'Espresso de origem \u00fanica com notas de chocolate e caramelo.',
+    'menu.desc2': 'Equil\u00edbrio perfeito de espresso, leite vaporizado e espuma.',
+    'menu.desc3': 'Croissant folhado e amanteigado, assado fresco diariamente.',
+    'menu.desc4': 'Espresso encorpado com leite vaporizado cremoso.',
+    'menu.desc5': 'Caf\u00e9 gelado suave preparado por 24 horas.',
+    'menu.desc6': 'P\u00e3o de queijo quentinho, crocante por fora e macio por dentro.',
+    'menu.item7': 'Caramel Frappuccino',
+    'menu.desc7': 'Caf\u00e9 com caramelo, batido com chantilly.',
+    'menu.item8': 'Muffin de Chocolate',
+    'menu.desc8': 'Muffin rico em chocolate com textura macia e \u00famida.',
+    'menu.item9': 'Latte de Baunilha',
+    'menu.desc9': 'Espresso suave com xarope de baunilha e leite vaporizado.',
+    'menu.item10': 'Rolinho de Canela',
+    'menu.desc10': 'Rolinho de canela macio com recheio de creme de canela.',
+    'menu.item11': 'Mocha',
+    'menu.desc11': 'Espresso com xarope de chocolate e leite vaporizado.',
+    'menu.item12': 'Torta de Ma\u00e7\u00e3',
+    'menu.desc12': 'Torta de ma\u00e7\u00e3 caseira com crosta folhada.',
+    'menu.addToCart': 'Adicionar ao Carrinho',
 
     // Cart / Orders
     'cart.title': 'Seu pedido',
@@ -292,9 +333,9 @@ const translations: Record<Lang, Record<string, string>> = {
     'gallery.scrollText': 'Role para ver imagens',
     'gallery.slideText': 'Deslize para explorar',
     // Feedback / Testimonials
-    'feedback.title': 'O QUE OS CLIENTES DIZEM?',
+    'feedback.title': 'O que nossos clientes dizem?',
     'feedback.subtitle':
-      'Leia o que alguns de nossos maiores clientes j\u00e1 falaram:',
+      'N\u00e3o leve em conta apenas o que falamos, leia o que alguns de nossos maiores clientes j\u00e1 falaram:',
     'feedback.person1': 'Ana Silva',
     'feedback.role1': 'Apaixonada por Caf\u00e9',
     'feedback.text1':
