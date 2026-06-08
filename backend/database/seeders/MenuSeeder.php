@@ -74,7 +74,7 @@ class MenuSeeder extends Seeder
             'description_pt' => 'Sempre quentinho e crocante.',
             'price' => 500, // R$ 5,00
             'is_available' => true,
-            'image_url' => 'https://images.unsplash.com/photo-1675125530909-15213f01a9e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXN0cnklMjBjcm9pc3NhbnQlMjBjb2ZmZWV8ZW58MXx8fHwxNzc0MjczMTA2fDA&ixlib=rb-4.1.0&q=80&w=1080'
+            'image_url' => 'https://images.unsplash.com/photo-1559141680-d0bd7bc5af84?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
         ]);
 
         Product::create([
