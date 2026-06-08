@@ -1,0 +1,135 @@
+# Handoff
+
+## Tarefa feita
+
+- Reconfigurada a suite Playwright em `testes-playwright` com `package.json`, `playwright.config.js`, mocks de API e 4 testes cobrindo cardapio, checkout, XSS e area de atendentes.
+- Implementada a area dos atendentes com login por Sanctum, conta seedada, listagem de pedidos priorizando pendentes por horario, edicao de mesa/status/itens, conclusao e cancelamento de pedidos.
+- Implementado o sistema de carrinho na `main` com integracao ao Laravel: `CartProvider`, `CartDrawer`, botao de adicionar no menu, contador e abertura do carrinho na navbar, carregamento de produtos via API e envio de pedidos para `/api/orders`.
+- Analisado o problema do carrinho na `main`: a branch atual nao possui `CartProvider`, `CartDrawer`, `CartContext`, botoes de adicionar no menu nem acao no icone de carrinho; a implementacao existe na branch `AuraCup-Tests`, mas precisa ser adaptada ao contrato novo do backend.
+- Criado `docs/guia-testes.md` com passo a passo para preparar ambiente, rodar testes backend, validar migrations/seeders, listar rotas, executar build e entender a situacao dos testes Playwright.
+- Ajustados os testes de backend da `main` para a API Laravel/SQLite implementada: removidos `ExampleTest`, adicionados testes de menu e pedidos, corrigidos `Product::$fillable`, namespace do `MenuSeeder` e restaurado `npm run test:backend`.
+- Atualizada a branch local `main` com `origin/main` ate o commit `4680f1f` e analisadas as mudancas recentes dos integrantes.
+- Corrigida a secao GitHub Stats do README do perfil `guiguik12/guiguik12`, trocando `github-readme-stats.vercel.app` por `github-profile-summary-cards.vercel.app` porque o servico antigo retornava `DEPLOYMENT_PAUSED`.
+- Publicado o README de perfil no repositorio GitHub `guiguik12/guiguik12` como `README.md` e removido `README-profile.md` da pasta do projeto.
+- Atualizado `README-profile.md` com PostgreSQL, Java, Docker, GitHub Actions, projetos em destaque, contatos reais e foco de estudos em IA.
+- Criado um README de perfil profissional em `README-profile.md`, destacando habilidades de frontend, backend, testes, seguranca e documentacao.
+- Corrigida a suite Playwright para usar API mockada de forma deterministica.
+- Removidos testes padrao do Laravel que nao faziam parte do trabalho avaliativo.
+- Atualizada documentacao de testes com resultados reais.
+- Criados arquivos locais de coordenacao entre agentes.
+- Tentada leitura do PDF por extracao direta e Chromium headless; o corpo do PDF nao ficou extraivel com as ferramentas locais disponiveis.
+- Traduzidos nomes de helpers e variaveis dos testes Playwright para portugues, mantendo seletores em ingles porque a interface testada usa textos em ingles.
+
+## Arquivos alterados
+
+- `backend/app/Http/Controllers/Attendant/AuthController.php`
+- `backend/app/Http/Controllers/Attendant/OrderController.php`
+- `backend/app/Http/Controllers/OrderController.php`
+- `backend/app/Models/Order.php`
+- `backend/app/Models/Product.php`
+- `backend/app/Models/User.php`
+- `backend/database/migrations/2026_06_08_000001_add_is_attendant_to_users_table.php`
+- `backend/database/seeders/AttendantSeeder.php`
+- `backend/database/seeders/DatabaseSeeder.php`
+- `backend/routes/api.php`
+- `backend/tests/Feature/AttendantApiTest.php`
+- `src/app/App.tsx`
+- `src/app/components/AttendantArea.tsx`
+- `src/app/components/Footer.tsx`
+- `src/app/components/Navbar.tsx`
+- `src/app/context/SectionContext.tsx`
+- `src/app/services/attendantService.ts`
+- `src/app/types/attendant.ts`
+- `src/i18n/translations.ts`
+- `.env.example`
+- `src/app/App.tsx`
+- `src/app/components/CardNav.tsx`
+- `src/app/components/CartDrawer.tsx`
+- `src/app/components/Menu.tsx`
+- `src/app/components/Navbar.tsx`
+- `src/app/context/CartContext.tsx`
+- `src/app/data/menuItems.ts`
+- `src/app/domain/orderRules.ts`
+- `src/app/services/api.ts`
+- `src/app/services/orderService.ts`
+- `src/app/services/productService.ts`
+- `src/app/types/order.ts`
+- `src/i18n/translations.ts`
+- `src/main.tsx`
+- `docs/guia-testes.md`
+- `testes-playwright/package.json`
+- `testes-playwright/README.md`
+- `testes-playwright/playwright.config.js`
+- `testes-playwright/tests/cardapio.spec.js`
+- `testes-playwright/tests/helpers.js`
+- `testes-playwright/tests/pedido.spec.js`
+- `testes-playwright/tests/seguranca.spec.js`
+- `backend/app/Models/Product.php`
+- `backend/database/seeders/MenuSeeder.php`
+- `backend/tests/Feature/ExampleTest.php`
+- `backend/tests/Unit/ExampleTest.php`
+- `backend/tests/Feature/MenuApiTest.php`
+- `backend/tests/Feature/OrderApiTest.php`
+- `package.json`
+- `README-profile.md`
+- `.env.test`
+- `.gitignore`
+- `backend/README.md`
+- `backend/tests/Feature/ExampleTest.php`
+- `backend/tests/Unit/ExampleTest.php`
+- `docs/plano-testes.md`
+- `docs/relatorio-tecnico.md`
+- `testes-playwright/README.md`
+- `testes-playwright/playwright.config.js`
+- `testes-playwright/tests/cardapio.spec.js`
+- `testes-playwright/tests/helpers.js`
+- `testes-playwright/tests/pedido.spec.js`
+- `testes-playwright/tests/seguranca.spec.js`
+- `agents.md`
+- `decisions.md`
+- `handoff.md`
+
+## Testes executados
+
+- `npm test` em `testes-playwright`: passou com 4 testes Playwright.
+- `npm run test:e2e`: passou com 4 testes Playwright a partir da raiz do projeto.
+- `npm run build`: passou fora do sandbox apos `spawn EPERM` no sandbox; manteve aviso de chunks maiores que 500 kB.
+- `npm run test:backend`: passou com 10 testes e 43 assertions.
+- `php artisan migrate:fresh --seed --env=testing`: passou; executou `MenuSeeder` e `AttendantSeeder`.
+- `php artisan route:list --path=api/attendant`: passou; confirmou 8 rotas da area de atendentes.
+- Verificacao manual da integracao com Laravel: `GET /api/products` respondeu 200 e `POST /api/orders` respondeu 201 com pedido persistido no SQLite local.
+- `npm run build`: passou durante a analise do carrinho; confirma que o problema nao e compilacao, mas ausencia/integracao da funcionalidade na `main`.
+- Nao executado nesta etapa; alteracao apenas documental no guia de testes.
+- `php artisan test`: passou com 6 testes e 26 assertions apos os ajustes de backend.
+- `npm run test:backend`: passou com 6 testes e 26 assertions apos restaurar o script raiz.
+- `npm run build`: passou apos executar fora do sandbox; gerou aviso de chunks maiores que 500 kB.
+- `npm test`: falhou porque a branch `main` atual nao possui script `test`.
+- `npm run test:backend`: falhou porque a branch `main` atual nao possui script `test:backend`.
+- `composer test`: falhou com "Acesso negado" mesmo fora do sandbox.
+- `php artisan test`: falhou em `Tests\\Feature\\ExampleTest::test_the_application_returns_a_successful_response`, pois `/` retornou 404 em vez de 200.
+- `php artisan migrate:fresh --seed --env=testing`: passou; criou tabelas e executou `MenuSeeder`.
+- `php artisan route:list --path=api`: passou; listou `/api/demo`, `/api/categories`, `/api/products`, `/api/orders` e `/api/orders/{id}`.
+- `php artisan tinker`: confirmou 2 categorias e 6 produtos seedados.
+- Verificados endpoints dos novos cards de stats com `Invoke-WebRequest`: `profile-details`, `repos-per-language` e `stats` retornaram HTTP 200.
+- Nao executado nesta tarefa; alteracao documental publicada em outro repositorio.
+- Nao executado nesta tarefa; alteracao apenas documental no README de perfil.
+- Nao executado nesta tarefa; alteracao apenas documental.
+- `npm test`: passou.
+- `npm run test:backend`: passou com 10 testes, 41 assertions.
+- `npm run test:e2e`: passou com 8 testes Playwright apos a traducao dos helpers.
+
+## Pendencias
+
+- Para acessar a area de atendentes em ambiente seedado, usar `atendente@auracup.com` com senha `Auracup@123`; em producao, trocar por credenciais reais e seguras.
+- Validar visualmente a tela no navegador quando o plugin/browser estiver disponivel ou quando o dev server estiver rodando localmente.
+- Restaurar/adaptar o sistema de carrinho na `main`: trazer `CartContext`, `CartDrawer`, `menuItems`, `orderRules`, `orderService`, `productService`, tipos de pedido, integracoes em `main.tsx`, `App.tsx`, `Navbar`, `CardNav`, `Menu` e traducoes; ajustar `orderService` ao backend atual, que espera `table_number` e IDs numericos de produtos.
+- Avaliar se a `main` deve recuperar os scripts/testes/documentacao da branch `AuraCup-Tests`, pois a branch atual perdeu `npm test`, `npm run test:backend` e os testes Playwright versionados.
+- Conferir o contrato da API de pedidos da `main`, que agora espera `table_number` e `items.*.product_id`, diferente do fluxo de checkout documentado/testado anteriormente.
+- Nenhuma pendencia funcional conhecida na correcao planejada.
+- PDF: se for indispensavel comparar palavra por palavra com o enunciado, instalar ferramenta de extracao/OCR ou abrir manualmente o PDF fora do ambiente atual.
+- Foi criado `.env.test` que estava faltando.
+- Corrigir `.gitignore`: remover `package.json`, `tsconfig.json`, `tsconfig.node.json` e `preetierrc.json` (typo) da lista de ignorados.
+- Corrigir CardNav: `logo` passado como string de texto mas usado como `<img src={logo}>`.
+- Melhorar descricoes e imagens no `MenuSeeder` (descricoes genericas e imagens duplicadas).
+- Adicionar `docs/plano-testes.md` e `docs/relatorio-tecnico.md` faltantes.
+- Se outro agente continuar, revisar `git status` para separar mudancas anteriores do usuario das mudancas desta tarefa.

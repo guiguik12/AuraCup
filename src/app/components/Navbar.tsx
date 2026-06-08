@@ -1,15 +1,15 @@
 import CardNav from './CardNav';
-import { useSection } from '../context/SectionContext';
+import { type Section, useSection } from '../context/SectionContext';
+import { useCart } from '../context/CartContext';
 import { useLanguage } from '../../i18n/LanguageContext';
 
 export function Navbar() {
   const { setActiveSection } = useSection();
+  const { cartItemCount, openCart } = useCart();
   const { t, lang, setLang } = useLanguage();
 
   const handleNavigation = (section: string) => {
-    setActiveSection(
-      section as 'home' | 'menu' | 'about' | 'gallery' | 'feedback' | 'location'
-    );
+    setActiveSection(section as Section);
   };
 
   const navItems = [
@@ -57,6 +57,11 @@ export function Navbar() {
           onClick: () => handleNavigation('feedback'),
           ariaLabel: t('nav.feedback'),
         },
+        {
+          label: t('nav.attendant'),
+          onClick: () => handleNavigation('attendant'),
+          ariaLabel: t('nav.attendant'),
+        },
       ],
     },
   ];
@@ -74,6 +79,9 @@ export function Navbar() {
       lang={lang}
       onToggleLang={() => setLang(lang === 'en' ? 'pt-br' : 'en')}
       langLabel={lang === 'en' ? t('lang.pt-br') : t('lang.en')}
+      cartCount={cartItemCount}
+      onCartClick={openCart}
+      cartLabel={t('nav.cart')}
     />
   );
 }

@@ -14,11 +14,7 @@ node_modules/
 # Production build
 dist/
 dist-ssr/
-tsconfig.json
-tsconfig.node.json
-preetierrc.json
-package-lock.json
-package.json
+# tsconfig and package files ARE versioned - removed from ignore
 
 # Vite
 .vite/
@@ -37,6 +33,8 @@ pids
 coverage/
 .nyc_output
 *.lcov
+testes-playwright/playwright-report/
+testes-playwright/test-results/
 
 # Environment variables
 .env
@@ -44,6 +42,9 @@ coverage/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Playwright package
+!testes-playwright/package.json
 
 # Editors/IDEs
 .vscode/settings.json

@@ -1,0 +1,103 @@
+import type { Lang } from '@/i18n/translations';
+
+export type MenuItem = {
+  id: number;
+  nameEn: string;
+  namePt: string;
+  descriptionEn: string;
+  descriptionPt: string;
+  price: number;
+  image: string;
+  available: boolean;
+  category: string;
+};
+
+export const fallbackMenuItems: MenuItem[] = [
+  {
+    id: 1,
+    nameEn: 'Expresso Artesanal',
+    namePt: 'Expresso Artesanal',
+    descriptionEn: 'Short espresso made with selected beans.',
+    descriptionPt: 'Expresso curto com grãos selecionados.',
+    price: 600,
+    category: 'Cafés Especiais',
+    available: true,
+    image:
+      'https://images.unsplash.com/photo-1771956649576-647bbaaffa4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlc3ByZXNzbyUyMGNvZmZlZSUyMGN1cCUyMGhhbmRzfGVufDF8fHx8MTc3NDI3MzEwNXww&ixlib=rb-4.1.0&q=80&w=1080',
+  },
+  {
+    id: 2,
+    nameEn: 'Cappuccino Clássico',
+    namePt: 'Cappuccino Clássico',
+    descriptionEn: 'Classic cappuccino with steamed milk and foam.',
+    descriptionPt: 'Cappuccino clássico com leite vaporizado e espuma.',
+    price: 1250,
+    category: 'Cafés Especiais',
+    available: true,
+    image:
+      'https://images.unsplash.com/photo-1667388363683-a07bbf0c84b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxjYXBwdWNjaW5vJTIwbGF0dGUlMjBhcnR8ZW58MXx8fHwxNzc0MjI5OTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080',
+  },
+  {
+    id: 3,
+    nameEn: 'Latte Macchiato',
+    namePt: 'Latte Macchiato',
+    descriptionEn: 'Layered milk and espresso for a smooth break.',
+    descriptionPt: 'Leite e espresso em camadas para uma pausa suave.',
+    price: 1250,
+    category: 'Cafés Especiais',
+    available: true,
+    image:
+      'https://images.unsplash.com/photo-1667388363683-a07bbf0c84b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxjYXBwdWNjaW5vJTIwbGF0dGUlMjBhcnR8ZW58MXx8fHwxNzc0MjI5OTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080',
+  },
+  {
+    id: 4,
+    nameEn: 'Special Cold Brew',
+    namePt: 'Cold Brew Especial',
+    descriptionEn: 'Cold extraction with a naturally sweet roasted profile.',
+    descriptionPt: 'Extração fria com perfil torrado naturalmente adocicado.',
+    price: 1250,
+    category: 'Cafés Especiais',
+    available: true,
+    image:
+      'https://images.unsplash.com/photo-1672570050756-4f1953bde478?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxjb2ZmZWUlMjBiZWFucyUyMHJvYXN0ZWR8ZW58MXx8fHwxNzc0MjI4NjEyfDA&ixlib=rb-4.1.0&q=80&w=1080',
+  },
+  {
+    id: 5,
+    nameEn: 'Cheese Bread',
+    namePt: 'Pão de Queijo Mineiro',
+    descriptionEn: 'Always warm and crunchy.',
+    descriptionPt: 'Sempre quentinho e crocante.',
+    price: 500,
+    category: 'Para Acompanhar',
+    available: true,
+    image:
+      'https://images.unsplash.com/photo-1675125530909-15213f01a9e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxwYXN0cnklMjBjcm9pc3NhbnQlMjBjb2ZmZWV8ZW58MXx8fHwxNzc0MjczMTA2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+  },
+  {
+    id: 6,
+    nameEn: 'Butter Croissant',
+    namePt: 'Croissant Amanteigado',
+    descriptionEn: 'Golden pastry with a buttery center.',
+    descriptionPt: 'Massa dourada com centro amanteigado.',
+    price: 3500,
+    category: 'Para Acompanhar',
+    available: true,
+    image:
+      'https://images.unsplash.com/photo-1675125530909-15213f01a9e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHxwYXN0cnklMjBjcm9pc3NhbnQlMjBjb2ZmZWV8ZW58MXx8fHwxNzc0MjczMTA2fDA&ixlib=rb-4.1.0&q=80&w=1080',
+  },
+];
+
+export function getMenuItemName(item: MenuItem, lang: Lang) {
+  return lang === 'pt-br' ? item.namePt : item.nameEn;
+}
+
+export function getMenuItemDescription(item: MenuItem, lang: Lang) {
+  return lang === 'pt-br' ? item.descriptionPt : item.descriptionEn;
+}
+
+export function formatMenuPrice(priceInCents: number, lang: Lang) {
+  return new Intl.NumberFormat(lang === 'pt-br' ? 'pt-BR' : 'en-US', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(priceInCents / 100);
+}

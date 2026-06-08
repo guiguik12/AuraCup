@@ -35,6 +35,9 @@ export interface CardNavProps {
   lang?: string;
   onToggleLang?: () => void;
   langLabel?: string;
+  cartCount?: number;
+  onCartClick?: () => void;
+  cartLabel?: string;
 }
 
 const CardNav: React.FC<CardNavProps> = ({
@@ -49,6 +52,9 @@ const CardNav: React.FC<CardNavProps> = ({
   lang,
   onToggleLang,
   langLabel,
+  cartCount = 0,
+  onCartClick,
+  cartLabel = 'Shopping cart',
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const navRef = useRef<HTMLDivElement | null>(null);
@@ -206,7 +212,10 @@ const CardNav: React.FC<CardNavProps> = ({
             )}
           </button>
 
-          <div className="logo-container flex items-center gap-2 md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 cursor-pointer" onClick={onLogoClick}>
+          <div
+            className="logo-container flex items-center gap-2 md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 cursor-pointer"
+            onClick={onLogoClick}
+          >
             <img src={logo} alt={''} className="logo h-[28px]" />
             <span
               className="text-sm font-semibold uppercase tracking-wide"
@@ -231,11 +240,17 @@ const CardNav: React.FC<CardNavProps> = ({
             )}
             <button
               type="button"
-              className="cart-button inline-flex h-10 items-center justify-center cursor-pointer transition-colors duration-300 hover:opacity-75"
+              className="cart-button relative inline-flex h-10 items-center justify-center cursor-pointer transition-colors duration-300 hover:opacity-75"
               style={{ color: buttonTextColor }}
-              aria-label="Shopping cart"
+              onClick={onCartClick}
+              aria-label={cartLabel}
             >
               <ShoppingCart className="w-5 h-5" />
+              {cartCount > 0 && (
+                <span className="absolute -right-2 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#C9A84C] px-1 font-['Inter'] text-[11px] font-bold text-[#2C1A0E]">
+                  {cartCount}
+                </span>
+              )}
             </button>
           </div>
         </div>

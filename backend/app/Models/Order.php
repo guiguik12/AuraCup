@@ -11,7 +11,7 @@ class Order extends Model
     //
     public function products(): BelongsToMany {
         return $this->belongsToMany(Product::class, 'order_items')
-        ->withPivot('quantity', 'price') // Avisa o Laravel que existem esses campos extras
+        ->withPivot('quantity', 'price', 'description') // Avisa o Laravel que existem esses campos extras
         ->withTimestamps();
     }
     protected $fillable = [
@@ -26,4 +26,29 @@ class Order extends Model
         ];
     }
 
+    /**
+     * @param array<int, array{product_id:int, quantity:int}> $items
+     */
+    public function syncOrderItems(array $items): int
+    {
+        $totalPrice = 0;
+        $itemsToSync = [];
+
+        foreach ($items as $item) {
+            $product = Product::findOrFail($item['product_id']);
+            $quantity = (int) $item['quantity'];
+            $totalPrice += $product->price * $quantity;
+
+            $itemsToSync[$product->id] = [
+                'quantity' => $quantity,
+                'price' => $product->price,
+                'description' => $product->description_pt ?? $product->name_pt,
+            ];
+        }
+
+        $this->products()->sync($itemsToSync);
+        $this->update(['total_price' => $totalPrice]);
+
+        return $totalPrice;
+    }
 }

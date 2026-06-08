@@ -90,6 +90,17 @@ export function Footer() {
                     {t('footer.contacts')}
                   </button>
                 </li>
+                <li>
+                  <button
+                    onClick={e => {
+                      e.preventDefault();
+                      setActiveSection('attendant');
+                    }}
+                    className="font-['Inter'] text-[#E3E3E3] hover:text-[#6E6C68] transition-colors duration-300 text-sm border-none cursor-pointer"
+                  >
+                    {t('footer.attendant')}
+                  </button>
+                </li>
               </ul>
             </div>
             <div className="flex flex-col items-center md:items-end justify-center gap-2">

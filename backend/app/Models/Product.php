@@ -9,13 +9,15 @@ class Product extends Model
     //
     public function orders(): BelongsToMany {
         return $this->belongsToMany(Order::class, 'order_items')
-        ->withPivot('quantity', 'price')
+        ->withPivot('quantity', 'price', 'description')
         ->withTimestamps();
     }
     protected $fillable = [
         'category_id',
-        'name',
-        'description',
+        'name_en',
+        'name_pt',
+        'description_en',
+        'description_pt',
         'price',
         'image_url',
         'is_available',

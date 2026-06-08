@@ -1,0 +1,54 @@
+import { expect, test } from '@playwright/test';
+import { mockAttendantApi, mockMenuApi } from './helpers.js';
+
+test('nao executa conteudo malicioso vindo do cardapio', async ({ page }) => {
+  await mockMenuApi(page, {
+    products: [
+      {
+        id: 99,
+        category_id: 1,
+        name_en: '<img src=x onerror=alert(1)>',
+        name_pt: '<img src=x onerror=alert(1)>',
+        description_en: 'Malicious payload',
+        description_pt: 'Carga maliciosa',
+        price: 500,
+        image_url:
+          'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="640" height="360"%3E%3Crect width="640" height="360" fill="%23f3f0ea"/%3E%3C/svg%3E',
+        is_available: true,
+      },
+    ],
+  });
+
+  let alertTriggered = false;
+  page.on('dialog', async dialog => {
+    alertTriggered = true;
+    await dialog.dismiss();
+  });
+
+  await page.goto('/');
+  await page.getByRole('button', { name: /view menu/i }).click();
+
+  await expect(page.getByText('<img src=x onerror=alert(1)>')).toBeVisible();
+  expect(alertTriggered).toBeFalsy();
+});
+
+test('abre a area restrita e lista pedidos para atendentes', async ({
+  page,
+}) => {
+  await mockMenuApi(page);
+  await mockAttendantApi(page);
+
+  await page.goto('/');
+  await page.getByRole('button', { name: /view menu/i }).click();
+  await page.getByRole('button', { name: /staff/i }).click();
+
+  await page.getByLabel(/email/i).fill('atendente@auracup.com');
+  await page.getByLabel(/password/i).fill('Auracup@123');
+  await page.getByRole('button', { name: /sign in/i }).click();
+
+  await expect(page.getByText(/order management/i)).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /in progress/i })
+  ).toBeVisible();
+  await expect(page.getByText(/#7/)).toBeVisible();
+});

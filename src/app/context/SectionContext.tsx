@@ -1,6 +1,13 @@
 import { createContext, useContext, useState, ReactNode, useMemo } from 'react';
 
-type Section = 'home' | 'menu' | 'about' | 'gallery' | 'feedback' | 'location';
+export type Section =
+  | 'home'
+  | 'menu'
+  | 'about'
+  | 'gallery'
+  | 'feedback'
+  | 'location'
+  | 'attendant';
 
 interface SectionContextType {
   activeSection: Section;

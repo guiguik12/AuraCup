@@ -6,8 +6,10 @@ import { Menu } from './components/Menu';
 import { Gallery } from './components/Gallery';
 import { Feedback } from './components/Feedback';
 import { Location } from './components/Location';
+import { AttendantArea } from './components/AttendantArea';
 import { Footer } from './components/Footer';
 import { BackToTop } from './components/BackToTop';
+import { CartDrawer } from './components/CartDrawer';
 import { useSection } from './context/SectionContext';
 
 function AppContent() {
@@ -23,6 +25,7 @@ function AppContent() {
   return (
     <div className="min-h-screen">
       <Navbar />
+      <CartDrawer />
       <main className="flex-1">
         {activeSection === 'home' && <Home />}
         {activeSection === 'menu' && <Menu />}
@@ -30,6 +33,7 @@ function AppContent() {
         {activeSection === 'gallery' && <Gallery />}
         {activeSection === 'feedback' && <Feedback />}
         {activeSection === 'location' && <Location />}
+        {activeSection === 'attendant' && <AttendantArea />}
       </main>
       {activeSection !== 'home' && <Footer />}
       <BackToTop />

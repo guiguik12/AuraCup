@@ -1,62 +1,36 @@
 import { motion, useInView } from 'motion/react';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { ShoppingCart } from 'lucide-react';
 import { useLanguage } from '../../i18n/LanguageContext';
-
-const menuItems = [
-  {
-    id: 1,
-    nameKey: 'menu.item1',
-    descriptionKey: 'menu.description',
-    price: '$4.50',
-    image:
-      'https://images.unsplash.com/photo-1771956649576-647bbaaffa4d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlc3ByZXNzbyUyMGNvZmZlZSUyMGN1cCUyMGhhbmRzfGVufDF8fHx8MTc3NDI3MzEwNXww&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 2,
-    nameKey: 'menu.item2',
-    descriptionKey: 'menu.description',
-    price: '$5.50',
-    image:
-      'https://images.unsplash.com/photo-1667388363683-a07bbf0c84b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXBwdWNjaW5vJTIwbGF0dGUlMjBhcnR8ZW58MXx8fHwxNzc0MjI5OTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 3,
-    nameKey: 'menu.item3',
-    descriptionKey: 'menu.description',
-    price: '$3.50',
-    image:
-      'https://images.unsplash.com/photo-1675125530909-15213f01a9e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXN0cnklMjBjcm9pc3NhbnQlMjBjb2ZmZWV8ZW58MXx8fHwxNzc0MjczMTA2fDA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 4,
-    nameKey: 'menu.item4',
-    descriptionKey: 'menu.description',
-    price: '$5.00',
-    image:
-      'https://images.unsplash.com/photo-1667388363683-a07bbf0c84b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXBwdWNjaW5vJTIwbGF0dGUlMjBhcnR8ZW58MXx8fHwxNzc0MjI5OTQ3fDA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 5,
-    nameKey: 'menu.item5',
-    descriptionKey: 'menu.description',
-    price: '$6.00',
-    image:
-      'https://images.unsplash.com/photo-1672570050756-4f1953bde478?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2ZmZWUlMjBiZWFucyUyMHJvYXN0ZWR8ZW58MXx8fHwxNzc0MjI4NjEyfDA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-  {
-    id: 6,
-    nameKey: 'menu.item6',
-    descriptionKey: 'menu.description',
-    price: '$4.00',
-    image:
-      'https://images.unsplash.com/photo-1675125530909-15213f01a9e1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYXN0cnklMjBjcm9pc3NhbnQlMjBjb2ZmZWV8ZW58MXx8fHwxNzc0MjczMTA2fDA&ixlib=rb-4.1.0&q=80&w=1080',
-  },
-];
+import { useCart } from '../context/CartContext';
+import {
+  fallbackMenuItems,
+  formatMenuPrice,
+  getMenuItemDescription,
+  getMenuItemName,
+  type MenuItem,
+} from '../data/menuItems';
+import { listProducts } from '../services/productService';
 
 export function Menu() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const { addItem } = useCart();
+  const [products, setProducts] = useState<MenuItem[]>(fallbackMenuItems);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    listProducts().then(result => {
+      if (!isMounted) return;
+      setProducts(result.products);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   return (
     <section id="menu" ref={ref} className="py-20 md:py-32 bg-[#E3E3E3]">
@@ -72,53 +46,68 @@ export function Menu() {
           </h2>
         </motion.div>
 
-        {/* Menu Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {menuItems.map((item, index) => (
-            <motion.div
-              key={item.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group cursor-pointer"
-            >
-              <div className="bg-[#F5ECD7] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-                {/* Image */}
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={t(item.nameKey)}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#2C1A0E]/50 to-transparent" />
-                  {/* Price Tag */}
-                  <div className="absolute top-4 right-4 bg-[#C9A84C] text-[#2C1A0E] px-4 py-2 rounded-full font-['Inter'] shadow-lg">
-                    {item.price}
+          {products.map((item, index) => {
+            const itemName = getMenuItemName(item, lang);
+
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group"
+              >
+                <div className="bg-[#F5ECD7] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                  <div className="relative h-64 overflow-hidden">
+                    <img
+                      src={item.image}
+                      alt={itemName}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#2C1A0E]/50 to-transparent" />
+                    <div className="absolute top-4 right-4 bg-[#C9A84C] text-[#2C1A0E] px-4 py-2 rounded-full font-['Inter'] shadow-lg">
+                      {formatMenuPrice(item.price, lang)}
+                    </div>
+                  </div>
+
+                  <div className="p-6">
+                    <span className="mb-2 inline-flex rounded-full bg-[#8A9E7B]/20 px-3 py-1 font-['Inter'] text-xs font-bold uppercase text-[#5B3130]">
+                      {item.category}
+                    </span>
+                    <h3 className="font-['Inter'] text-[#2C1A0E] text-2xl mb-2">
+                      {itemName}
+                    </h3>
+                    <p className="font-['Inter'] text-[#2C1A0E]/70 text-sm leading-relaxed">
+                      {getMenuItemDescription(item, lang)}
+                    </p>
+                    <button
+                      type="button"
+                      className="mt-5 flex w-full items-center justify-center gap-2 rounded-full bg-[#5B3130] px-5 py-3 font-['Inter'] text-sm font-bold text-[#F5ECD7] transition-colors hover:bg-[#3d2918] disabled:cursor-not-allowed disabled:opacity-60"
+                      onClick={() => addItem(item)}
+                      disabled={!item.available}
+                      aria-label={`${t('menu.addToCart')} ${itemName}`}
+                    >
+                      <ShoppingCart className="h-4 w-4" />
+                      {t('menu.addToCart')}
+                    </button>
                   </div>
                 </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <h3 className="font-['Inter'] text-[#2C1A0E] text-2xl mb-2">
-                    {t(item.nameKey)}
-                  </h3>
-                  <p className="font-['Inter'] text-[#2C1A0E]/70 text-sm leading-relaxed">
-                    {t(item.descriptionKey)}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* View Full Menu Button */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center mt-12"
         >
-          <button className="bg-[#2C1A0E] text-[#F5ECD7] px-8 py-4 rounded-full font-['Inter'] text-lg hover:bg-[#3d2918] transition-all duration-300 hover:scale-105 shadow-xl">
+          <button
+            type="button"
+            className="bg-[#2C1A0E] text-[#F5ECD7] px-8 py-4 rounded-full font-['Inter'] text-lg hover:bg-[#3d2918] transition-all duration-300 hover:scale-105 shadow-xl"
+          >
             {t('menu.viewMore')}
           </button>
         </motion.div>
