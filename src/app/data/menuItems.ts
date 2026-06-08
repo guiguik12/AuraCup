@@ -71,7 +71,7 @@ export const fallbackMenuItems: MenuItem[] = [
     category: 'Para Acompanhar',
     available: true,
     image:
-      'https://images.unsplash.com/photo-1612203985729-70726954388c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYW8lMjBkZSUyMHF1ZWlqb3xlbnwxfHx8fHwxNzYxMTMzODU1fDA&ixlib=rb-4.1.0&q=80&w=1080',
+      'https://images.unsplash.com/photo-1559141680-d0bd7bc5af84?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwYW8lMjBkZSUyMHF1ZWlqb3xlbnwxfHx8fHwxNzYxMTMzODU1fDA&ixlib=rb-4.1.0&q=80&w=1080',
   },
   {
     id: 6,
