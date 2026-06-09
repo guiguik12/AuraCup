@@ -36,6 +36,7 @@ import type {
   AttendantOrder,
   AttendantOrderStatus,
 } from '../types/attendant';
+import ShinyText from './ShinyText';
 
 const SESSION_KEY = 'auracup_attendant_session';
 const STATUS_OPTIONS: AttendantOrderStatus[] = [
@@ -66,17 +67,17 @@ function statusColor(status: AttendantOrderStatus) {
   const colorMap: Record<AttendantOrderStatus, string> = {
     pendente: 'bg-[#C9A84C] text-[#2C1A0E]',
     confirmado: 'bg-[#8A9E7B] text-[#10170D]',
-    preparando: 'bg-[#5B3130] text-[#F5ECD7]',
-    pronto: 'bg-[#2C1A0E] text-[#F5ECD7]',
-    entregue: 'bg-[#E3E3E3] text-[#2C1A0E]',
-    cancelado: 'bg-[#7A2E2E] text-[#F5ECD7]',
+    preparando: 'bg-[#5B3130] text-[#E3E3E3]',
+    pronto: 'bg-[#2C1A0E] text-[#E3E3E3]',
+    entregue: 'bg-[#E3E3E3] text-[#2C1A0E] border border-[#5B3130]/20',
+    cancelado: 'bg-[#7A2E2E] text-[#E3E3E3]',
   };
 
   return colorMap[status];
 }
 
 export function AttendantArea() {
-  const { t, lang } = useLanguage();
+  const { t } = useLanguage();
   const [session, setSession] = useState<AttendantLoginResult | null>(() =>
     loadStoredSession()
   );
@@ -228,14 +229,26 @@ export function AttendantArea() {
     <section className="min-h-screen bg-[#E3E3E3] px-6 py-24 md:px-12 lg:px-24">
       <div className="mx-auto max-w-[1440px]">
         <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#5B3130] px-4 py-2 font-['Inter'] text-sm font-bold text-[#F5ECD7]">
+          <div className="flex-1">
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-[#5B3130] px-4 py-2 font-['Inter'] text-sm font-bold text-[#E3E3E3]">
               <ShieldCheck className="h-4 w-4" />
               {t('attendant.badge')}
             </div>
-            <h1 className="font-['Inter'] text-4xl text-[#2C1A0E] md:text-5xl">
-              {t('attendant.title')}
-            </h1>
+            <div className="max-w-full overflow-visible">
+              <ShinyText
+                text={t('attendant.title')}
+                speed={3}
+                delay={0}
+                color="#2C1A0E"
+                shineColor="#E3E3E3"
+                spread={100}
+                direction="left"
+                yoyo
+                pauseOnHover
+                disabled={false}
+                className="font-['Inter'] text-3xl sm:text-4xl md:text-5xl font-bold leading-tight whitespace-normal break-words"
+              />
+            </div>
           </div>
 
           {session && (
@@ -243,7 +256,7 @@ export function AttendantArea() {
               <button
                 type="button"
                 onClick={loadOrders}
-                className="inline-flex items-center gap-2 rounded-full bg-[#2C1A0E] px-5 py-3 font-['Inter'] text-sm font-bold text-[#F5ECD7] transition-colors hover:bg-[#3d2918]"
+                className="inline-flex items-center gap-2 rounded-full bg-[#E3E3E3] px-5 py-3 font-['Inter'] text-sm font-bold text-[#5B3130] transition-all duration-300 hover:bg-[#3d2918] hover:scale-105 active:scale-95"
               >
                 <RefreshCcw className="h-4 w-4" />
                 {t('attendant.refresh')}
@@ -251,7 +264,7 @@ export function AttendantArea() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="inline-flex items-center gap-2 rounded-full border border-[#5B3130]/30 px-5 py-3 font-['Inter'] text-sm font-bold text-[#5B3130] transition-colors hover:bg-[#5B3130]/10"
+                className="inline-flex items-center gap-2 rounded-full border border-[#5B3130]/30 px-5 py-3 font-['Inter'] text-sm font-bold text-[#5B3130] transition-all duration-300 hover:bg-[#5B3130]/10 hover:scale-105 active:scale-95"
               >
                 <LogOut className="h-4 w-4" />
                 {t('attendant.logout')}
@@ -269,41 +282,41 @@ export function AttendantArea() {
         {!session ? (
           <form
             onSubmit={handleLogin}
-            className="max-w-xl rounded-lg bg-[#F5ECD7] p-6 shadow-xl"
+            className="max-w-xl rounded-2xl bg-[#F9F9F9] border border-[#5B3130] p-6 shadow-xl"
           >
-            <div className="mb-5 flex items-center gap-3 text-[#5B3130]">
-              <ShieldCheck className="h-6 w-6" />
-              <h2 className="font-['Inter'] text-2xl">
+            <div className="mb-5 flex items-center gap-3 text-[#141517]">
+              <ShieldCheck className="h-5 w-5" />
+              <h2 className="font-['Inter'] text-1xl font-medium">
                 {t('attendant.loginTitle')}
               </h2>
             </div>
             <div className="grid gap-4">
-              <label className="font-['Inter'] text-sm font-bold text-[#2C1A0E]">
+              <label className="font-['Inter'] text-sm font-bold text-[#141517]">
                 {t('attendant.email')}
                 <input
                   type="email"
                   value={email}
                   onChange={event => setEmail(event.target.value)}
                   placeholder="atendente@auracup.com"
-                  className="mt-2 w-full rounded-lg border border-[#5B3130]/20 bg-white px-4 py-3 font-normal outline-none focus:border-[#5B3130]"
+                  className="mt-2 w-full rounded-lg border border-[#5B3130]/20 bg-[#E3E3E3] px-4 py-3 font-normal text-[#141517] outline-none focus:border-[#5B3130] focus:ring-1 focus:ring-[#5B3130]"
                   required
                 />
               </label>
-              <label className="font-['Inter'] text-sm font-bold text-[#2C1A0E]">
+              <label className="font-['Inter'] text-sm font-bold text-[#141517]">
                 {t('attendant.password')}
                 <input
                   type="password"
                   value={password}
                   onChange={event => setPassword(event.target.value)}
                   placeholder="********"
-                  className="mt-2 w-full rounded-lg border border-[#5B3130]/20 bg-white px-4 py-3 font-normal outline-none focus:border-[#5B3130]"
+                  className="mt-2 w-full rounded-lg border border-[#5B3130]/20 bg-[#E3E3E3] px-4 py-3 font-normal text-[#141517] outline-none focus:border-[#5B3130] focus:ring-1 focus:ring-[#5B3130]"
                   required
                 />
               </label>
               <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#5B3130] px-5 py-3 font-['Inter'] text-sm font-bold text-[#F5ECD7] transition-colors hover:bg-[#3d2918] disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#5B3130] px-5 py-3 font-['Inter'] text-sm font-bold text-[#E3E3E3] transition-all duration-300 hover:bg-[#C9A84C] hover:scale-105 active:scale-95"
               >
                 <ShieldCheck className="h-4 w-4" />
                 {loading ? t('attendant.loading') : t('attendant.login')}
@@ -447,9 +460,9 @@ function DashboardSummary({
         return (
           <div
             key={item.label}
-            className="rounded-lg bg-[#F5ECD7] p-5 shadow-lg"
+            className="rounded-2xl bg-[#F5ECD7] p-5 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
           >
-            <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#5B3130] text-[#F5ECD7]">
+            <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#5B3130] text-[#E3E3E3]">
               <Icon className="h-5 w-5" />
             </div>
             <p className="font-['Inter'] text-sm font-bold uppercase text-[#5B3130]">
@@ -508,10 +521,10 @@ function OrderGroup({
     <section>
       <div className="mb-4 flex items-center gap-2 font-['Inter'] text-[#5B3130]">
         {icon}
-        <h2 className="text-2xl">{title}</h2>
+        <h2 className="text-2xl font-bold">{title}</h2>
       </div>
       {orders.length === 0 ? (
-        <div className="rounded-lg border border-[#5B3130]/15 bg-[#F5ECD7] p-5 font-['Inter'] text-[#2C1A0E]/70">
+        <div className="rounded-2xl border border-[#5B3130]/15 bg-[#F5ECD7] p-5 font-['Inter'] text-[#2C1A0E]/70">
           {t('attendant.emptyOrders')}
         </div>
       ) : (
@@ -523,12 +536,12 @@ function OrderGroup({
             return (
               <article
                 key={order.id}
-                className="rounded-lg bg-[#F5ECD7] p-5 shadow-lg"
+                className="rounded-2xl bg-[#F5ECD7] p-5 shadow-lg transition-all duration-300 hover:shadow-xl"
               >
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                   <div>
                     <div className="mb-3 flex flex-wrap items-center gap-3">
-                      <span className="inline-flex items-center gap-2 rounded-full bg-[#2C1A0E] px-3 py-1 font-['Inter'] text-sm font-bold text-[#F5ECD7]">
+                      <span className="inline-flex items-center gap-2 rounded-full bg-[#2C1A0E] px-3 py-1 font-['Inter'] text-sm font-bold text-[#E3E3E3]">
                         <ClipboardList className="h-4 w-4" />#{order.id}
                       </span>
                       <span
@@ -574,7 +587,7 @@ function OrderGroup({
                 </div>
 
                 {isEditing && (
-                  <div className="mt-5 grid gap-4 rounded-lg border border-[#5B3130]/20 bg-white/60 p-4">
+                  <div className="mt-5 grid gap-4 rounded-xl border border-[#5B3130]/20 bg-white/60 p-4">
                     <div className="grid gap-4 md:grid-cols-2">
                       <label className="font-['Inter'] text-sm font-bold text-[#2C1A0E]">
                         {t('attendant.table')}
@@ -585,7 +598,7 @@ function OrderGroup({
                           onChange={event =>
                             onEditTableNumber(event.target.value)
                           }
-                          className="mt-2 w-full rounded-lg border border-[#5B3130]/20 px-3 py-2 font-normal outline-none focus:border-[#5B3130]"
+                          className="mt-2 w-full rounded-lg border border-[#5B3130]/20 bg-white px-3 py-2 font-normal text-[#2C1A0E] outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]"
                         />
                       </label>
                       <label className="font-['Inter'] text-sm font-bold text-[#2C1A0E]">
@@ -597,7 +610,7 @@ function OrderGroup({
                               event.target.value as AttendantOrderStatus
                             )
                           }
-                          className="mt-2 w-full rounded-lg border border-[#5B3130]/20 px-3 py-2 font-normal outline-none focus:border-[#5B3130]"
+                          className="mt-2 w-full rounded-lg border border-[#5B3130]/20 bg-white px-3 py-2 font-normal text-[#2C1A0E] outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]"
                         >
                           {STATUS_OPTIONS.map(status => (
                             <option key={status} value={status}>
@@ -611,7 +624,7 @@ function OrderGroup({
                       {products.map(product => (
                         <label
                           key={product.id}
-                          className="rounded-lg border border-[#5B3130]/15 bg-[#F5ECD7] p-3 font-['Inter'] text-sm font-bold text-[#2C1A0E]"
+                          className="rounded-xl border border-[#5B3130]/15 bg-[#F5ECD7] p-3 font-['Inter'] text-sm font-bold text-[#2C1A0E]"
                         >
                           {getMenuItemName(product, lang)}
                           <input
@@ -621,7 +634,7 @@ function OrderGroup({
                             onChange={event =>
                               onEditQuantity(product.id, event.target.value)
                             }
-                            className="mt-2 w-full rounded-lg border border-[#5B3130]/20 px-3 py-2 font-normal outline-none focus:border-[#5B3130]"
+                            className="mt-2 w-full rounded-lg border border-[#5B3130]/20 bg-white px-3 py-2 font-normal text-[#2C1A0E] outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]"
                           />
                         </label>
                       ))}
@@ -631,7 +644,7 @@ function OrderGroup({
                         type="button"
                         onClick={() => onSaveEdit(order.id)}
                         disabled={isSaving}
-                        className="inline-flex items-center gap-2 rounded-full bg-[#5B3130] px-5 py-3 font-['Inter'] text-sm font-bold text-[#F5ECD7] transition-colors hover:bg-[#3d2918] disabled:opacity-60"
+                        className="inline-flex items-center gap-2 rounded-full bg-[#5B3130] px-5 py-3 font-['Inter'] text-sm font-bold text-[#E3E3E3] transition-all duration-300 hover:bg-[#3d2918] hover:scale-105 active:scale-95 disabled:opacity-60"
                       >
                         <Save className="h-4 w-4" />
                         {t('attendant.save')}
@@ -639,7 +652,7 @@ function OrderGroup({
                       <button
                         type="button"
                         onClick={onCancelEditing}
-                        className="inline-flex items-center gap-2 rounded-full border border-[#5B3130]/30 px-5 py-3 font-['Inter'] text-sm font-bold text-[#5B3130] transition-colors hover:bg-[#5B3130]/10"
+                        className="inline-flex items-center gap-2 rounded-full border border-[#5B3130]/30 px-5 py-3 font-['Inter'] text-sm font-bold text-[#5B3130] transition-all duration-300 hover:bg-[#5B3130]/10 hover:scale-105 active:scale-95"
                       >
                         <XCircle className="h-4 w-4" />
                         {t('attendant.cancelEdit')}
@@ -653,7 +666,7 @@ function OrderGroup({
                     <button
                       type="button"
                       onClick={() => onStartEditing(order)}
-                      className="inline-flex items-center gap-2 rounded-full border border-[#5B3130]/30 px-4 py-2 font-['Inter'] text-sm font-bold text-[#5B3130] transition-colors hover:bg-[#5B3130]/10"
+                      className="inline-flex items-center gap-2 rounded-full border border-[#5B3130]/30 px-4 py-2 font-['Inter'] text-sm font-bold text-[#5B3130] transition-all duration-300 hover:bg-[#5B3130]/10 hover:scale-105 active:scale-95"
                     >
                       <Pencil className="h-4 w-4" />
                       {t('attendant.edit')}
@@ -663,7 +676,7 @@ function OrderGroup({
                         type="button"
                         onClick={() => onComplete(order.id)}
                         disabled={isSaving}
-                        className="inline-flex items-center gap-2 rounded-full bg-[#8A9E7B] px-4 py-2 font-['Inter'] text-sm font-bold text-[#10170D] transition-opacity hover:opacity-80 disabled:opacity-60"
+                        className="inline-flex items-center gap-2 rounded-full bg-[#8A9E7B] px-4 py-2 font-['Inter'] text-sm font-bold text-[#10170D] transition-all duration-300 hover:opacity-80 hover:scale-105 active:scale-95 disabled:opacity-60"
                       >
                         <CheckCircle2 className="h-4 w-4" />
                         {t('attendant.complete')}
@@ -674,7 +687,7 @@ function OrderGroup({
                         type="button"
                         onClick={() => onCancel(order.id)}
                         disabled={isSaving}
-                        className="inline-flex items-center gap-2 rounded-full bg-[#7A2E2E] px-4 py-2 font-['Inter'] text-sm font-bold text-[#F5ECD7] transition-opacity hover:opacity-80 disabled:opacity-60"
+                        className="inline-flex items-center gap-2 rounded-full bg-[#7A2E2E] px-4 py-2 font-['Inter'] text-sm font-bold text-[#E3E3E3] transition-all duration-300 hover:opacity-80 hover:scale-105 active:scale-95 disabled:opacity-60"
                       >
                         <XCircle className="h-4 w-4" />
                         {t('attendant.cancelOrder')}

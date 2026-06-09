@@ -67,34 +67,30 @@ export function CartDrawer() {
 
   return (
     <div className="fixed inset-0 z-[100] flex justify-end">
-      <button
-        type="button"
-        aria-label={t('cart.close')}
-        className="absolute inset-0 bg-black/50"
-        onClick={closeCart}
-      />
+      <div className="absolute inset-0 bg-[#141517]/50" onClick={closeCart} />
 
       <aside
         aria-label={t('cart.title')}
-        className="relative flex h-full w-full max-w-[460px] flex-col overflow-y-auto bg-[#F5ECD7] p-5 shadow-2xl md:p-6"
+        className="relative flex h-full w-full max-w-[460px] flex-col overflow-y-auto bg-[#E3E3E3] p-5 shadow-2xl md:p-6"
+        style={{ overscrollBehavior: 'contain' }}
       >
-        <div className="flex items-center justify-between gap-4 border-b border-[#2C1A0E]/15 pb-4">
+        <div className="flex items-center justify-between gap-4 border-b border-[#5B3130]/15 pb-4">
           <div className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#5B3130] text-[#F5ECD7]">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#5B3130] text-[#E3E3E3]">
               <ShoppingBag className="h-5 w-5" />
             </span>
-            <div>
-              <h2 className="font-['Inter'] text-2xl font-bold text-[#2C1A0E]">
+            <div className="flex items-baseline gap-2">
+              <h2 className="font-['Inter'] text-1xl font-bold text-[#141517]">
                 {t('cart.title')}
               </h2>
-              <p className="font-['Inter'] text-sm text-[#2C1A0E]/65">
-                {cartItemCount} {t('cart.items')}
+              <p className="font-['Inter'] text-sm text-[#141517]/65">
+                ({cartItemCount} {t('cart.items')})
               </p>
             </div>
           </div>
           <button
             type="button"
-            className="flex h-10 w-10 items-center justify-center rounded-full text-[#2C1A0E] transition-colors hover:bg-[#2C1A0E]/10"
+            className="flex h-10 w-10 items-center justify-center rounded-full text-[#141517] transition-colors hover:bg-[#5B3130]/10"
             onClick={closeCart}
             aria-label={t('cart.close')}
           >
@@ -103,17 +99,17 @@ export function CartDrawer() {
         </div>
 
         {lastOrderId && !hasItems && (
-          <div className="mt-5 rounded-lg border border-[#8A9E7B]/40 bg-[#8A9E7B]/15 p-4">
+          <div className="mt-5 rounded-lg border border-[#5B3130]/40 bg-[#5B3130]/15 p-4">
             <div className="flex items-start gap-3">
-              <CheckCircle2 className="mt-1 h-5 w-5 text-[#5B3130]" />
+              <CheckCircle2 className="mt-1 h-5 w-5 text-[#141517]" />
               <div>
-                <p className="font-['Inter'] text-base font-bold text-[#2C1A0E]">
+                <p className="font-['Inter'] text-base font-bold text-[#141517]">
                   {t('cart.orderSuccess')}
                 </p>
-                <p className="font-['Inter'] text-sm text-[#2C1A0E]/70">
+                <p className="font-['Inter'] text-sm text-[#141517]/70">
                   {t('cart.orderNumber')} {lastOrderId}
                 </p>
-                <p className="mt-1 font-['Inter'] text-sm text-[#2C1A0E]/70">
+                <p className="mt-1 font-['Inter'] text-sm text-[#141517]/70">
                   {t('cart.sentToApi')}
                 </p>
               </div>
@@ -125,10 +121,10 @@ export function CartDrawer() {
           <div className="flex flex-1 flex-col items-center justify-center gap-4 py-16 text-center">
             <ClipboardList className="h-12 w-12 text-[#5B3130]" />
             <div>
-              <p className="font-['Inter'] text-xl font-bold text-[#2C1A0E]">
+              <p className="font-['Inter'] text-xl font-bold text-[#141517]">
                 {t('cart.emptyTitle')}
               </p>
-              <p className="mt-2 font-['Inter'] text-sm text-[#2C1A0E]/65">
+              <p className="mt-2 font-['Inter'] text-sm text-[#141517]/65">
                 {t('cart.emptyText')}
               </p>
             </div>
@@ -142,7 +138,7 @@ export function CartDrawer() {
                 return (
                   <article
                     key={line.item.id}
-                    className="grid grid-cols-[76px_1fr] gap-3 rounded-lg bg-white/70 p-3 shadow-sm"
+                    className="grid grid-cols-[76px_1fr] gap-3 rounded-lg bg-[#5B3130] p-3 shadow-sm"
                   >
                     <img
                       src={line.item.image}
@@ -152,16 +148,13 @@ export function CartDrawer() {
                     <div className="min-w-0">
                       <div className="flex items-start justify-between gap-3">
                         <div>
-                          <h3 className="font-['Inter'] text-base font-bold text-[#2C1A0E]">
+                          <h3 className="font-['Inter'] text-base font-bold text-[#E3E3E3]">
                             {itemName}
                           </h3>
-                          <p className="font-['Inter'] text-sm text-[#2C1A0E]/65">
-                            {formatMenuPrice(line.item.price, lang)}
-                          </p>
                         </div>
                         <button
                           type="button"
-                          className="rounded-full p-2 text-[#5B3130] transition-colors hover:bg-[#5B3130]/10"
+                          className="rounded-full p-2 text-[#E3E3E3] transition-colors hover:bg-[#E3E3E3]/10"
                           onClick={() => removeItem(line.item.id)}
                           aria-label={`${t('cart.remove')} ${itemName}`}
                         >
@@ -170,10 +163,10 @@ export function CartDrawer() {
                       </div>
 
                       <div className="mt-3 flex items-center justify-between gap-3">
-                        <div className="flex items-center rounded-full border border-[#2C1A0E]/20 bg-[#F5ECD7]">
+                        <div className="flex items-center rounded-full border border-[#5B3130]/20 bg-[#E3E3E3]">
                           <button
                             type="button"
-                            className="flex h-9 w-9 items-center justify-center text-[#2C1A0E]"
+                            className="flex h-6 w-6 items-center justify-center text-[#141517]"
                             onClick={() =>
                               updateQuantity(line.item.id, line.quantity - 1)
                             }
@@ -181,12 +174,12 @@ export function CartDrawer() {
                           >
                             <Minus className="h-4 w-4" />
                           </button>
-                          <span className="min-w-8 text-center font-['Inter'] text-sm font-bold text-[#2C1A0E]">
+                          <span className="min-w-8 text-center font-['Inter'] text-sm text-[#141517]">
                             {line.quantity}
                           </span>
                           <button
                             type="button"
-                            className="flex h-9 w-9 items-center justify-center text-[#2C1A0E]"
+                            className="flex h-6 w-6 items-center justify-center text-[#141517]"
                             onClick={() =>
                               updateQuantity(line.item.id, line.quantity + 1)
                             }
@@ -195,7 +188,7 @@ export function CartDrawer() {
                             <Plus className="h-4 w-4" />
                           </button>
                         </div>
-                        <span className="font-['Inter'] text-sm font-bold text-[#2C1A0E]">
+                        <span className="font-['Inter'] text-sm text-[#E3E3E3]">
                           {formatMenuPrice(
                             line.item.price * line.quantity,
                             lang
@@ -208,14 +201,14 @@ export function CartDrawer() {
               })}
             </div>
 
-            <div className="mt-5 rounded-lg bg-[#2C1A0E] p-4 text-[#F5ECD7]">
+            <div className="mt-5 rounded-lg bg-[#f9f9f9] p-4 text-[#141517] border border-[#141517]/50">
               <div className="flex items-center justify-between font-['Inter'] text-lg font-bold">
                 <span>{t('cart.total')}</span>
                 <span>{totalLabel}</span>
               </div>
               <button
                 type="button"
-                className="mt-3 text-sm text-[#F5ECD7]/75 underline transition-colors hover:text-[#F5ECD7]"
+                className="mt-3 text-sm text-[#141517]/75 underline transition-colors hover:text-[#141517]"
                 onClick={clearCart}
               >
                 {t('cart.clear')}
@@ -223,11 +216,11 @@ export function CartDrawer() {
             </div>
 
             <form className="mt-5 space-y-4" onSubmit={handleSubmit}>
-              <h3 className="font-['Inter'] text-lg font-bold text-[#2C1A0E]">
+              <h3 className="font-['Inter'] text-lg font-bold text-[#141517]">
                 {t('cart.checkout')}
               </h3>
 
-              <label className="block font-['Inter'] text-sm font-bold text-[#2C1A0E]">
+              <label className="block font-['Inter'] text-sm text-[#141517]">
                 {t('cart.tableNumber')}
                 <input
                   required
@@ -235,7 +228,7 @@ export function CartDrawer() {
                   type="number"
                   value={tableNumber}
                   onChange={event => setTableNumber(event.target.value)}
-                  className="mt-1 w-full rounded-lg border border-[#2C1A0E]/20 bg-white px-3 py-2 font-['Inter'] text-sm text-[#2C1A0E] outline-none focus:border-[#5B3130]"
+                  className="mt-1 w-full rounded-lg border border-[#5B3130]/20 bg-[#f9f9f9] px-3 py-2 font-['Inter'] text-sm text-[#141517] outline-none focus:border-[#5B3130] focus:ring-1 focus:ring-[#5B3130]"
                 />
               </label>
 
@@ -248,7 +241,7 @@ export function CartDrawer() {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="flex w-full items-center justify-center rounded-full bg-[#5B3130] px-5 py-3 font-['Inter'] text-base font-bold text-[#F5ECD7] transition-colors hover:bg-[#3d2918] disabled:opacity-60"
+                className="flex w-full items-center justify-center rounded-full bg-[#5B3130] px-3 py-2 font-['Inter'] text-base font-bold text-[#E3E3E3] transition-all duration-300 hover:bg-[#c9a84c] hover:scale-105 active:scale-95 disabled:opacity-60"
               >
                 {isSubmitting ? t('cart.submitting') : t('cart.submit')}
               </button>

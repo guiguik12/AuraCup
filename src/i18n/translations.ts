@@ -52,19 +52,24 @@ const translations: Record<Lang, Record<string, string>> = {
     'menu.item5': 'Special Cold Brew',
     'menu.item6': 'Cheese Bread',
     'menu.desc1': 'Single-origin espresso with notes of chocolate and caramel.',
-    'menu.desc2': 'Traditional Brazilian coffee with steamed milk, creamy and comforting.',
+    'menu.desc2':
+      'Traditional Brazilian coffee with steamed milk, creamy and comforting.',
     'menu.desc3': 'Flaky, buttery croissant baked fresh daily.',
-    'menu.desc4': 'Three layers of hot milk, espresso and foam for a creamy experience.',
+    'menu.desc4':
+      'Three layers of hot milk, espresso and foam for a creamy experience.',
     'menu.desc5': 'Smooth and refreshing cold brew, steeped for 12 hours.',
     'menu.desc6': 'Warm cheese bread, crispy on the outside and soft inside.',
     'menu.item7': 'Mocha',
-    'menu.desc7': 'Espresso with premium chocolate and steamed milk, topped with cocoa.',
+    'menu.desc7':
+      'Espresso with premium chocolate and steamed milk, topped with cocoa.',
     'menu.item8': 'Affogato',
-    'menu.desc8': 'Hot espresso over vanilla ice cream, a perfect hot-cold contrast.',
+    'menu.desc8':
+      'Hot espresso over vanilla ice cream, a perfect hot-cold contrast.',
     'menu.item9': 'Special Macchiato',
     'menu.desc9': 'Bold espresso with a delicate layer of microfoam.',
     'menu.item10': 'Chicken Croquette',
-    'menu.desc10': 'Golden teardrop-shaped croquette filled with shredded chicken.',
+    'menu.desc10':
+      'Golden teardrop-shaped croquette filled with shredded chicken.',
     'menu.item11': 'Grilled Ham & Cheese',
     'menu.desc11': 'Toasted bread with ham and melted cheese.',
     'menu.addToCart': 'Add to Cart',
@@ -96,10 +101,10 @@ const translations: Record<Lang, Record<string, string>> = {
     'cart.validation.table.required': 'Enter a valid table number.',
 
     // Attendant area
-    'attendant.badge': 'Restricted staff area',
+    'attendant.badge': 'Restricted area (staff only)',
     'attendant.title': 'Order Management',
     'attendant.loginTitle': 'Staff login',
-    'attendant.email': 'Email',
+    'attendant.email': 'E-mail',
     'attendant.password': 'Password',
     'attendant.login': 'Sign in',
     'attendant.logout': 'Sign out',
@@ -248,19 +253,25 @@ const translations: Record<Lang, Record<string, string>> = {
     'menu.item5': 'Cold Brew Especial',
     'menu.item6': 'Pão de Queijo',
     'menu.desc1': 'Espresso de origem única com notas de chocolate e caramelo.',
-    'menu.desc2': 'Café tradicional brasileiro com leite vaporizado, cremoso e reconfortante.',
+    'menu.desc2':
+      'Café tradicional brasileiro com leite vaporizado, cremoso e reconfortante.',
     'menu.desc3': 'Croissant folhado e amanteigado, assado fresco diariamente.',
-    'menu.desc4': 'Três camadas de leite quente, espresso e espuma para uma experiência cremosa.',
+    'menu.desc4':
+      'Três camadas de leite quente, espresso e espuma para uma experiência cremosa.',
     'menu.desc5': 'Cold brew suave e refrescante, extraído por 12 horas.',
-    'menu.desc6': 'Pão de queijo quentinho, crocante por fora e macio por dentro.',
+    'menu.desc6':
+      'Pão de queijo quentinho, crocante por fora e macio por dentro.',
     'menu.item7': 'Mocha',
-    'menu.desc7': 'Espresso com chocolate premium e leite vaporizado, finalizado com cacau.',
+    'menu.desc7':
+      'Espresso com chocolate premium e leite vaporizado, finalizado com cacau.',
     'menu.item8': 'Affogato',
-    'menu.desc8': 'Espresso quente sobre sorvete de baunilha, um contraste perfeito entre quente e frio.',
+    'menu.desc8':
+      'Espresso quente sobre sorvete de baunilha, um contraste perfeito entre quente e frio.',
     'menu.item9': 'Macchiato Especial',
     'menu.desc9': 'Espresso marcado com uma camada delicada de microespuma.',
     'menu.item10': 'Coxinha de Frango',
-    'menu.desc10': 'Coxinha dourada em forma de gota recheada com frango desfiado.',
+    'menu.desc10':
+      'Coxinha dourada em forma de gota recheada com frango desfiado.',
     'menu.item11': 'Tosta Mista',
     'menu.desc11': 'Pão torrado com presunto e queijo derretido.',
     'menu.addToCart': 'Adicionar ao Carrinho',
@@ -292,24 +303,24 @@ const translations: Record<Lang, Record<string, string>> = {
     'cart.validation.table.required': 'Informe um número de mesa válido.',
 
     // Area dos atendentes
-    'attendant.badge': 'Area restrita dos atendentes',
-    'attendant.title': 'Gestao de pedidos',
+    'attendant.badge': 'Área restrita (apenas funcionários)',
+    'attendant.title': 'Gestão de pedidos',
     'attendant.loginTitle': 'Login de atendente',
-    'attendant.email': 'Email',
+    'attendant.email': 'E-mail',
     'attendant.password': 'Senha',
     'attendant.login': 'Entrar',
     'attendant.logout': 'Sair',
     'attendant.refresh': 'Atualizar',
     'attendant.loading': 'Carregando...',
     'attendant.activeOrders': 'Em andamento',
-    'attendant.completedOrders': 'Concluidos',
+    'attendant.completedOrders': 'Concluídos',
     'attendant.canceledOrders': 'Cancelados',
     'attendant.emptyOrders': 'Nenhum pedido neste grupo.',
     'attendant.table': 'Mesa',
     'attendant.status': 'Status',
     'attendant.edit': 'Editar',
     'attendant.save': 'Salvar',
-    'attendant.cancelEdit': 'Cancelar edicao',
+    'attendant.cancelEdit': 'Cancelar edição',
     'attendant.complete': 'Concluir',
     'attendant.cancelOrder': 'Cancelar pedido',
     'attendant.status.pendente': 'Pendente',
@@ -319,11 +330,11 @@ const translations: Record<Lang, Record<string, string>> = {
     'attendant.status.entregue': 'Entregue',
     'attendant.status.cancelado': 'Cancelado',
     'attendant.errors.login':
-      'Nao foi possivel entrar com essas credenciais de atendente.',
+      'Não foi possivel entrar com essas credenciais de atendente.',
     'attendant.errors.loadOrders':
-      'Nao foi possivel carregar os pedidos da API.',
-    'attendant.errors.save': 'Nao foi possivel salvar este pedido.',
-    'attendant.errors.action': 'Nao foi possivel atualizar o status do pedido.',
+      'Não foi possivel carregar os pedidos da API.',
+    'attendant.errors.save': 'Não foi possivel salvar este pedido.',
+    'attendant.errors.action': 'Não foi possivel atualizar o status do pedido.',
     'attendant.errors.emptyItems': 'Mantenha pelo menos um produto no pedido.',
 
     // Gallery
