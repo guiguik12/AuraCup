@@ -5,18 +5,23 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [
-    // react e tailwind
     react(),
     tailwindcss(),
   ],
   resolve: {
     alias: {
-      // diretorio src
       '@': path.resolve(__dirname, './src'),
     },
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json'],
   },
-
-  // tipos de file
   assetsInclude: ['**/*.svg', '**/*.csv'],
+  server: {
+    host: '0.0.0.0',
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8000',
+        changeOrigin: true,
+      },
+    },
+  },
 })

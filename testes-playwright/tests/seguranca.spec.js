@@ -42,7 +42,9 @@ test('abre a area restrita e lista pedidos para atendentes', async ({
   await page.getByRole('button', { name: /view menu/i }).click();
   await page.getByRole('button', { name: /staff/i }).click();
 
-  await page.getByLabel(/email/i).fill('atendente@auracup.com');
+  await page
+    .getByRole('textbox', { name: /e-mail/i })
+    .fill('atendente@auracup.com');
   await page.getByLabel(/password/i).fill('Auracup@123');
   await page.getByRole('button', { name: /sign in/i }).click();
 
@@ -51,4 +53,31 @@ test('abre a area restrita e lista pedidos para atendentes', async ({
     page.getByRole('heading', { name: /in progress/i })
   ).toBeVisible();
   await expect(page.getByText(/#7/)).toBeVisible();
+});
+
+test('bloqueia acesso de atendente com credenciais invalidas', async ({
+  page,
+}) => {
+  await mockMenuApi(page);
+  await mockAttendantApi(page, { loginStatus: 401 });
+
+  await page.goto('/');
+  await page.getByRole('button', { name: /view menu/i }).click();
+  await page.getByRole('button', { name: /staff/i }).click();
+
+  await page
+    .getByRole('textbox', { name: /e-mail/i })
+    .fill('cliente@auracup.com');
+  await page.getByLabel(/password/i).fill('senha-incorreta');
+  await page.getByRole('button', { name: /sign in/i }).click();
+
+  await expect(
+    page.getByText(/could not sign in with these staff credentials/i)
+  ).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /staff login/i })
+  ).toBeVisible();
+  await expect(
+    page.getByRole('heading', { name: /in progress/i })
+  ).toBeHidden();
 });

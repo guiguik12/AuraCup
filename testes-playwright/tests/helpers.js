@@ -14,11 +14,11 @@ export const catalogProducts = [
   {
     id: 2,
     category_id: 1,
-    name_en: 'Cappuccino Classic',
-    name_pt: 'Cappuccino Clássico',
-    description_en: 'Classic cappuccino with steamed milk and foam.',
-    description_pt: 'Cappuccino clássico com leite vaporizado e espuma.',
-    price: 1250,
+    name_en: 'Café com Leite',
+    name_pt: 'Café com Leite',
+    description_en: 'Traditional Brazilian coffee with steamed milk.',
+    description_pt: 'Café tradicional brasileiro com leite vaporizado.',
+    price: 900,
     image_url:
       'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="640" height="360"%3E%3Crect width="640" height="360" fill="%23cfc4b6"/%3E%3C/svg%3E',
     is_available: true,
@@ -30,7 +30,7 @@ export const attendantOrders = [
     id: 7,
     table_number: 4,
     status: 'pendente',
-    total_price: 1850,
+    total_price: 2100,
     created_at: '2026-06-08T12:00:00.000Z',
     updated_at: '2026-06-08T12:00:00.000Z',
     products: [
@@ -43,10 +43,10 @@ export const attendantOrders = [
       },
       {
         id: 2,
-        name_en: 'Cappuccino Classic',
-        name_pt: 'Cappuccino Clássico',
-        price: 1250,
-        pivot: { quantity: 1, price: 1250 },
+        name_en: 'Café com Leite',
+        name_pt: 'Café com Leite',
+        price: 900,
+        pivot: { quantity: 1, price: 900 },
       },
     ],
   },
@@ -71,6 +71,27 @@ export const attendantOrders = [
 
 export async function mockMenuApi(page, options = {}) {
   const products = options.products ?? catalogProducts;
+  const buildOrderResponse =
+    typeof options.orderResponse === 'function'
+      ? options.orderResponse
+      : () =>
+          options.orderResponse ?? {
+            message: 'Pedido realizado com sucesso!',
+            order: {
+              id: 101,
+              table_number: 7,
+              status: 'pendente',
+              total_price: 600,
+              products: [
+                {
+                  id: 1,
+                  name_en: 'Espresso Artesanal',
+                  name_pt: 'Espresso Artesanal',
+                  pivot: { quantity: 1, price: 600 },
+                },
+              ],
+            },
+          };
 
   await page.route('**/api/products**', async route => {
     await route.fulfill({
@@ -86,26 +107,34 @@ export async function mockMenuApi(page, options = {}) {
       return;
     }
 
+    const requestBody = JSON.parse(route.request().postData() ?? '{}');
+    options.onOrderRequest?.(requestBody);
+
+    const orderResponse = buildOrderResponse(requestBody);
+
     await route.fulfill({
-      status: 201,
+      status: orderResponse.status ?? 201,
       contentType: 'application/json',
-      body: JSON.stringify({
-        message: 'Pedido realizado com sucesso!',
-        order: {
-          id: 101,
-          table_number: 7,
-          status: 'pendente',
-          total_price: 600,
-          products: [
-            {
-              id: 1,
-              name_en: 'Espresso Artesanal',
-              name_pt: 'Espresso Artesanal',
-              pivot: { quantity: 1, price: 600 },
+      body: JSON.stringify(
+        orderResponse.body ??
+          orderResponse ?? {
+            message: 'Pedido realizado com sucesso!',
+            order: {
+              id: 101,
+              table_number: 7,
+              status: 'pendente',
+              total_price: 600,
+              products: [
+                {
+                  id: 1,
+                  name_en: 'Espresso Artesanal',
+                  name_pt: 'Espresso Artesanal',
+                  pivot: { quantity: 1, price: 600 },
+                },
+              ],
             },
-          ],
-        },
-      }),
+          }
+      ),
     });
   });
 }
@@ -114,6 +143,17 @@ export async function mockAttendantApi(page, options = {}) {
   const orders = options.orders ?? attendantOrders;
 
   await page.route('**/api/attendant/login', async route => {
+    if (options.loginStatus && options.loginStatus !== 200) {
+      await route.fulfill({
+        status: options.loginStatus,
+        contentType: 'application/json',
+        body: JSON.stringify({
+          message: 'Credenciais de atendente invalidas.',
+        }),
+      });
+      return;
+    }
+
     await route.fulfill({
       status: 200,
       contentType: 'application/json',

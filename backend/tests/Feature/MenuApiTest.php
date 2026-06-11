@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use App\Models\Product;
 use Database\Seeders\MenuSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,16 +19,16 @@ class MenuApiTest extends TestCase
         $this->seed(MenuSeeder::class);
     }
 
-    public function test_categories_endpoint_lists_seeded_categories(): void
+    public function test_lista_as_categorias_cadastradas_no_cardapio(): void
     {
         $this->getJson('/api/categories')
             ->assertOk()
             ->assertJsonCount(2)
-            ->assertJsonFragment(['name' => 'Cafés Especiais'])
+            ->assertJsonFragment(['name' => 'Especial'])
             ->assertJsonFragment(['name' => 'Para Acompanhar']);
     }
 
-    public function test_products_endpoint_lists_seeded_products(): void
+    public function test_lista_os_produtos_cadastrados_no_cardapio(): void
     {
         $this->getJson('/api/products')
             ->assertOk()
@@ -36,10 +37,12 @@ class MenuApiTest extends TestCase
             ->assertJsonPath('0.price', 600);
     }
 
-    public function test_product_model_accepts_translated_menu_fields(): void
+    public function test_salva_produto_com_campos_traduzidos(): void
     {
+        $category = Category::firstOrFail();
+
         $product = Product::create([
-            'category_id' => 1,
+            'category_id' => $category->id,
             'name_en' => 'Filtered Coffee',
             'name_pt' => 'Café Filtrado',
             'description_en' => 'Freshly brewed coffee.',

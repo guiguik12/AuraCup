@@ -31,7 +31,7 @@ class AttendantApiTest extends TestCase
         ]);
     }
 
-    public function test_attendant_can_login_and_receive_token(): void
+    public function test_atendente_consegue_fazer_login_e_receber_token(): void
     {
         $this->postJson('/api/attendant/login', [
             'email' => 'atendente.teste@auracup.com',
@@ -42,7 +42,7 @@ class AttendantApiTest extends TestCase
             ->assertJsonStructure(['token']);
     }
 
-    public function test_non_attendant_cannot_login_to_attendant_area(): void
+    public function test_usuario_comum_nao_consegue_entrar_na_area_de_atendente(): void
     {
         User::create([
             'name' => 'Cliente Teste',
@@ -57,7 +57,7 @@ class AttendantApiTest extends TestCase
         ])->assertUnauthorized();
     }
 
-    public function test_attendant_orders_are_sorted_with_pending_priority_and_time(): void
+    public function test_lista_pedidos_priorizando_pendentes_e_ordem_de_chegada(): void
     {
         $product = Product::firstOrFail();
 
@@ -73,7 +73,7 @@ class AttendantApiTest extends TestCase
             ->assertJsonPath('orders.2.id', $completed->id);
     }
 
-    public function test_attendant_can_edit_complete_and_cancel_order(): void
+    public function test_atendente_consegue_editar_concluir_e_cancelar_pedido(): void
     {
         $espresso = Product::where('name_en', 'Expresso Artesanal')->firstOrFail();
         $cappuccino = Product::whereKeyNot($espresso->id)->firstOrFail();

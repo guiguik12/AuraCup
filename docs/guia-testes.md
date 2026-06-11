@@ -4,7 +4,7 @@ Este guia mostra como preparar o ambiente e executar os testes disponíveis na b
 
 ## Visao geral
 
-Hoje a branch `main` possui testes automatizados de backend para a API Laravel/SQLite.
+Hoje a branch `main` possui testes automatizados de backend para a API Laravel/SQLite e testes E2E com Playwright para os fluxos principais da interface.
 
 Os testes cobrem:
 
@@ -16,6 +16,20 @@ Os testes cobrem:
 - Persistencia dos itens em `order_items`.
 - Consulta de pedido em `GET /api/orders/{id}`.
 - Validacao de payload invalido ao criar pedido.
+- Fluxo de cardapio e carrinho com Playwright.
+- Validacao de numero de mesa invalido no checkout.
+- Teste de XSS no cardapio.
+- Login autorizado e login negado na area de atendentes.
+
+## Plano de testes
+
+O plano formal com 11 casos documentados esta em:
+
+```text
+docs/plano-testes.md
+```
+
+Ele contem ID, funcionalidade, objetivo, tipo, dados de entrada, resultado esperado, prioridade e status final de cada caso.
 
 ## Pre-requisitos
 
@@ -77,7 +91,7 @@ cd backend && php artisan test
 Resultado esperado:
 
 ```text
-6 testes passaram, 26 assertions
+as suites correspondentes passam sem falhas
 ```
 
 ## Rodar direto pelo Laravel
@@ -182,6 +196,28 @@ A configuracao esperada e:
 
 Isso permite que o Playwright intercepte `/api/products`, `/api/orders` e as rotas da area de atendentes de forma deterministica, sem depender do Laravel rodando em `127.0.0.1:8000`.
 
+## Instrucoes para rodar
+
+Para a apresentacao, os comandos principais sao:
+
+```bash
+npm run test:backend
+npm run test:e2e
+npm run build
+```
+
+Se quiser executar manualmente por pasta:
+
+```bash
+cd backend
+php artisan test
+```
+
+```bash
+cd testes-playwright
+npm test
+```
+
 ## Problemas comuns
 
 ### `npm run test:backend` nao existe
@@ -233,6 +269,17 @@ protected $fillable = [
     'is_available',
 ];
 ```
+
+## Gerar o relatorio tecnico em PDF
+
+O relatorio tecnico (formato ABNT, com as evidencias embutidas como figuras) e gerado em `docs/relatorio-tecnico-auracup.pdf` pelo comando:
+
+```bash
+cd testes-playwright
+node scripts/gerar-relatorio-tecnico.mjs
+```
+
+Antes da entrega, preencha as constantes `INSTITUICAO`, `AUTORES` e `CIDADE` no inicio de `testes-playwright/scripts/gerar-relatorio-tecnico.mjs`. Se o conteudo mudar e as secoes trocarem de pagina, ajuste tambem os numeros em `SUMARIO`.
 
 ## Sequencia recomendada antes de entregar
 

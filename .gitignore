@@ -2,6 +2,16 @@
 agents.md
 decisions.md
 handoff.md
+.agents/
+.codex/
+.claude/
+settings.json
+
+# Playwright artifacts at repo root (run tests from testes-playwright/)
+/test-results/
+
+# Enunciado do trabalho (material do professor, nao versionar)
+Trabalho Avaliativo - Testes Automatizados em Sistema Web PHP.pdf
 
 # Logs
 logs

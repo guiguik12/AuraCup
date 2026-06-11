@@ -20,20 +20,20 @@ class OrderApiTest extends TestCase
         $this->seed(MenuSeeder::class);
     }
 
-    public function test_order_can_be_created_with_products_and_real_total(): void
+    public function test_cria_pedido_com_produtos_e_total_correto(): void
     {
         $espresso = Product::where('name_en', 'Expresso Artesanal')->firstOrFail();
-        $cappuccino = Product::where('name_en', 'Cappuccino Clássico')->firstOrFail();
+        $milkCoffee = Product::where('name_en', 'Café com Leite')->firstOrFail();
 
         $response = $this->postJson('/api/orders', [
             'table_number' => 7,
             'items' => [
                 ['product_id' => $espresso->id, 'quantity' => 2],
-                ['product_id' => $cappuccino->id, 'quantity' => 1],
+                ['product_id' => $milkCoffee->id, 'quantity' => 1],
             ],
         ]);
 
-        $expectedTotal = ($espresso->price * 2) + $cappuccino->price;
+        $expectedTotal = ($espresso->price * 2) + $milkCoffee->price;
 
         $response
             ->assertCreated()
@@ -60,7 +60,7 @@ class OrderApiTest extends TestCase
         ]);
     }
 
-    public function test_order_show_returns_products_for_existing_order(): void
+    public function test_consulta_pedido_existente_com_os_produtos(): void
     {
         $product = Product::firstOrFail();
 
@@ -82,7 +82,7 @@ class OrderApiTest extends TestCase
             ->assertJsonCount(1, 'products');
     }
 
-    public function test_order_creation_rejects_invalid_payload(): void
+    public function test_rejeita_criacao_de_pedido_com_dados_invalidos(): void
     {
         $this->postJson('/api/orders', [
             'table_number' => 'mesa-a',
