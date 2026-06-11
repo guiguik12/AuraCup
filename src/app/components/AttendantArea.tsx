@@ -246,7 +246,7 @@ export function AttendantArea() {
                 yoyo
                 pauseOnHover
                 disabled={false}
-                className="font-['Inter'] text-3xl sm:text-4xl md:text-5xl font-bold leading-tight whitespace-normal break-words"
+                className="font-['Inter'] text-md sm:text-4xl md:text-5xl font-bold leading-tight whitespace-normal break-words"
               />
             </div>
           </div>
@@ -460,15 +460,15 @@ function DashboardSummary({
         return (
           <div
             key={item.label}
-            className="rounded-2xl bg-[#F5ECD7] p-5 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+            className="rounded-2xl bg-[#5B3130] p-5 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
           >
             <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#5B3130] text-[#E3E3E3]">
               <Icon className="h-5 w-5" />
             </div>
-            <p className="font-['Inter'] text-sm font-bold uppercase text-[#5B3130]">
+            <p className="font-['Inter'] text-sm font-bold uppercase text-[#eadecb]">
               {item.label}
             </p>
-            <strong className="font-['Inter'] text-4xl text-[#2C1A0E]">
+            <strong className="font-['Inter'] text-4xl text-[#eadecb]">
               {item.value}
             </strong>
           </div>
@@ -524,7 +524,7 @@ function OrderGroup({
         <h2 className="text-2xl font-bold">{title}</h2>
       </div>
       {orders.length === 0 ? (
-        <div className="rounded-2xl border border-[#5B3130]/15 bg-[#F5ECD7] p-5 font-['Inter'] text-[#2C1A0E]/70">
+        <div className="rounded-2xl border border-[#F5ECD7]/15 bg-[#5B3130] p-5 font-['Inter'] text-[#F5ECD7]/70">
           {t('attendant.emptyOrders')}
         </div>
       ) : (
